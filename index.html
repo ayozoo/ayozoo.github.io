@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -237,10 +237,25 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-07-18 20:12:44 / Modified: 20:14:44" itemprop="dateCreated datePublished" datetime="2023-07-18T20:12:44+08:00">2023-07-18</time>
+      <time title="Created: 2023-07-18 20:12:44 / Modified: 21:17:38" itemprop="dateCreated datePublished" datetime="2023-07-18T20:12:44+08:00">2023-07-18</time>
     </span>
 
   
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>4 mins.</span>
+    </span>
 </div>
 
           
@@ -251,67 +266,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="vue3-vite-环境变量踩坑"><a href="#vue3-vite-环境变量踩坑" class="headerlink" title="vue3 + vite 环境变量踩坑"></a>vue3 + vite 环境变量踩坑</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在<em><strong>env</strong></em>的俩个配置环境变量的配置文件。</p>
-<p>例如以下生产环境、开发环境的环境变量文件：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.env.development 生产环境变量文件</span></span><br><span class="line"># 开发环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/dev-api'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// .env.production</span></span><br><span class="line"># 生产环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"># 生产环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/web-api'</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后在package.json中配置对应环境启动命令用以启动不同环境</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line">   <span class="string">"dev"</span>: <span class="string">"vue-cli-service --mode development"</span>,</span><br><span class="line">   <span class="string">"build"</span>: <span class="string">"vue-cli-service build --mode production"</span>,</span><br><span class="line"> },</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="什么是环境变量？"><a href="#什么是环境变量？" class="headerlink" title="什么是环境变量？"></a>什么是环境变量？</h2><p>根据代码运行环境变化而变化的变量就是所谓的环境变量。</p>
-<p>在生产环境和开发环境中最多用以区分接口公共<em><strong>BASE_URL_API</strong></em>路径来请求不同接口。</p>
-<p>环境变量一般在全局可以访问得到。在vue项目中，常见的环境变量访问方式是以下方式进行获取的：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">mode</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">'production'</span> ? <span class="string">'production'</span> : <span class="string">'development'</span></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>其中的<u><em><strong>process.env.NODE_ENV</strong></em></u>就是环境变量，他是Node.js提供的API，用以返回获取当前<u><strong>Shall</strong></u>(操作系统和运行环境)所有的环境变量。</p>
-<h2 id="vue2-webPack-与-vue3-vite项目搭建获取环境变量的区别："><a href="#vue2-webPack-与-vue3-vite项目搭建获取环境变量的区别：" class="headerlink" title="vue2+webPack 与 vue3+vite项目搭建获取环境变量的区别："></a>vue2+webPack 与 vue3+vite项目搭建获取环境变量的区别：</h2><h3 id="webpack、vite相似之处"><a href="#webpack、vite相似之处" class="headerlink" title="webpack、vite相似之处"></a>webpack、vite相似之处</h3><p>配置都是按照前言所述，创建对应的环境变量的<u><em><strong>env</strong></em></u>文件，配置<u><em><strong>package.json</strong></em></u>文件中对应环境的启动命令。</p>
-<h3 id="webpack中的环境变量"><a href="#webpack中的环境变量" class="headerlink" title="webpack中的环境变量"></a>webpack中的环境变量</h3><p>在vue2项目中，webpack做了处理，使得浏览器可以直接识别获取到node环境的process.env变量。</p>
-<ul>
-<li><p>创建方式：配置在项目中env环境变量配置文件中，webpack环境变量可随意命名</p>
-</li>
-<li><p>获取方式：可以通过***<u>process.env*</u>**获取</p>
-</li>
-</ul>
-<p>所以在页面中可以获取相应的环境变量：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里就是获取启动或者打包的命令获取对应的配置文件中的变量 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'当前环境是:'</span>,process.<span class="property">env</span>.<span class="property">NODE_ENV</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="vite中的环境变量"><a href="#vite中的环境变量" class="headerlink" title="vite中的环境变量"></a>vite中的环境变量</h3><ul>
-<li><p>创建方式：vite中环境创建存在俩种，都是在项目中env环境变量配置文件中配置：</p>
-<ol>
-<li><p>创建以<u><strong>VITE_</strong></u>开头的环境变量</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 开发环境配置</span><br><span class="line"><span class="variable constant_">NODE_ENV</span> =<span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line"><span class="variable constant_">VITE_APP_BASE_API</span> = <span class="string">'/dev-api'</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VITE_APP_URL</span> = <span class="string">"http://193.1.1.107:8042"</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VITE_APP_BASE_PORT</span> = <span class="string">"80"</span></span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>更换<u><strong>VITE_</strong></u>前缀</p>
-<p>以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中。参考官网：</p>
-<p>[共享配置]: <a target="_blank" rel="noopener" href="https://vitejs.cn/vite3-cn/config/shared-options.html#envdir">https://vitejs.cn/vite3-cn/config/shared-options.html#envdir</a>	“VIte官方文档”</p>
-<p>以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中。</p>
-<ul>
-<li><p><strong>类型：</strong> string | string[]</p>
-</li>
-<li><p><strong>默认：</strong> VITE_</p>
-</li>
-<li><p><strong>安全注意事项</strong></p>
-<p><strong>envPrefix</strong> 不应被设置为空字符串 <strong>‘ ‘</strong> ，这将暴露你所有的环境变量，导致敏感信息的意外泄漏。 检测到配置为 <strong>‘ ‘</strong> 时 Vite 将会抛出错误.</p>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>获取方式：</p>
-<p>Vite是在 <strong>import.meta.env</strong>对象上暴露当前Shall的环境变量。</p>
-<p>以下是获取对象中常用的内在变量：</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 应用运行的模式。</span></span><br><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">MODE</span>: {string} </span><br><span class="line"><span class="comment">// 部署应用时的基本 URL。他由base配置项决定。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">BASE_URL</span>: {string} </span><br><span class="line"><span class="comment">//  应用是否运行在生产环境。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">PROD</span>: {boolean}</span><br><span class="line"><span class="comment">// 应用是否运行在开发环境 (永远与 import.meta.env.PROD相反)。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">DEV</span>: {boolean} </span><br><span class="line"><span class="comment">// 应用是否运行在 </span></span><br><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">SSR</span>: {boolean} server 上。</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>注意：以上的变量存在于运行环境中，对应的vite.config中获取不到。</p>
-<p>在 Vite 的配置文件 vite.config.js 中，默认是不加载 .env 文件中的环境变量的。因为正常情况下，只有在评估完 Vite 配置之后，才知道哪些文件需要被加载，比如之前我们提到的<code>root</code>和<code>envDir</code>都会影响到加载的行为。不管如何，如果想要在配置中加载环境变量，可以使用 <code>loadEnv</code> 去加载环境变量。</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> { defineConfig, loadEnv } <span class="keyword">from</span> <span class="string">"vite"</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">"@vitejs/plugin-vue"</span>;</span><br><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">"path"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">{ mode }</span>) =&gt;</span> {</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">""</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(env.<span class="property">VITE_APP_BASE_API</span>);</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">resolve</span> = (<span class="params">dir</span>) =&gt; path.<span class="title function_">resolve</span>(__dirname, dir);</span><br><span class="line">  <span class="keyword">return</span> {</span><br><span class="line">    <span class="attr">base</span>: <span class="string">"./"</span>,</span><br><span class="line">    <span class="attr">publicPath</span>: <span class="title function_">resolve</span>(<span class="string">"./static"</span>),</span><br><span class="line">    <span class="attr">assetsPublicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">".js"</span>, <span class="string">".ts"</span>, <span class="string">".jsx"</span>, <span class="string">".tsx"</span>, <span class="string">".json"</span>, <span class="string">".vue"</span>],</span><br><span class="line">    <span class="attr">resolve</span>: {</span><br><span class="line">      <span class="attr">alias</span>: {</span><br><span class="line">        <span class="string">"@"</span>: <span class="title function_">resolve</span>(<span class="string">"src"</span>),</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">    <span class="comment">// 本地运行配置，及反向代理配置</span></span><br><span class="line">    <span class="attr">server</span>: {</span><br><span class="line">      <span class="attr">host</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">port</span>: <span class="number">80</span>,</span><br><span class="line">      <span class="attr">open</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">strictPort</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">https</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">cors</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">proxy</span>: {</span><br><span class="line">        <span class="comment">// 代理规则直接放在 server 对象下，而非嵌套的 server 对象中</span></span><br><span class="line">        [env.<span class="property">VITE_APP_BASE_API</span>]: {</span><br><span class="line">          <span class="attr">target</span>: <span class="string">"http://172.1.1.210:8080"</span>,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">rewrite</span>: <span class="function">(<span class="params">path</span>) =&gt;</span> path.<span class="title function_">replace</span>(<span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">"^"</span> + env.<span class="property">VITE_APP_BASE_API</span>), <span class="string">"/web-api"</span>), <span class="comment">// 替换 /dev-api 为 target 接口地址</span></span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  </span><br><span class="line">  };</span><br><span class="line">});</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>注意，mode必须解构后传入loadEnv mode变量中</p>
-</li>
-</ul>
-
+          <h1 id="vue3-vite-环境变量踩坑"><a href="#vue3-vite-环境变量踩坑" class="headerlink" title="vue3 + vite 环境变量踩坑"></a>vue3 + vite 环境变量踩坑</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在<em><strong>env</strong></em>的俩个配置环境变量的配置文件。…</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -371,6 +334,21 @@
     </span>
 
   
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>5</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>1 mins.</span>
+    </span>
 </div>
 
           
@@ -382,95 +360,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>你好我是React</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/06/29/%20hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/facelogo.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/29/%20hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-06-29 22:09:53" itemprop="dateCreated datePublished" datetime="2023-06-29T22:09:53+08:00">2023-06-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-06-30 00:44:39" itemprop="dateModified" datetime="2023-06-30T00:44:39+08:00">2023-06-30</time>
-    </span>
-
-  
-</div>
-
-          
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h2 id="my-blog"><a href="#my-blog" class="headerlink" title="my blog"></a>my blog</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
@@ -504,6 +393,41 @@
     </span>
     <span class="author" itemprop="copyrightHolder">ayozooZ</span>
   </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">1k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">4 mins.</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
 
 
 
@@ -565,6 +489,7 @@ darkmode.showWidget();
   <script src="/js/third-party/addtoany.js"></script>
 
   
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 

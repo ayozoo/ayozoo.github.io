@@ -2510,7 +2510,7 @@ header.header {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #6f73ac;
+  background: #b90aff;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2553,4 +2553,14 @@ header.header {
   .sidebar-dimmer {
     display: none;
   }
+}
+canvas {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  width: auto;
+  z-index: -1;
 }

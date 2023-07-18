@@ -19,23 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ayozoo.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="ayozooZ">
-<meta property="og:url" content="https://ayozoo.github.io/index.html">
+    <meta name="description" content="vue3 + vite 环境变量踩坑前言众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在env的俩个配置环境变量的配置文件。 例如以下生产环境、开发环境的环境变量文件： 1234567891011121314&#x2F;&#x2F;.env.development 生产环境变量文件# 开发环境配置ENV &#x3D; &#39;development&#39;# 开发环境VUE_APP_BASE_API &#x3D; &#39;&#x2F;dev-api&#39;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue3+vite环境变量踩雷">
+<meta property="og:url" content="https://ayozoo.github.io/2023/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/index.html">
 <meta property="og:site_name" content="ayozooZ">
+<meta property="og:description" content="vue3 + vite 环境变量踩坑前言众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在env的俩个配置环境变量的配置文件。 例如以下生产环境、开发环境的环境变量文件： 1234567891011121314&#x2F;&#x2F;.env.development 生产环境变量文件# 开发环境配置ENV &#x3D; &#39;development&#39;# 开发环境VUE_APP_BASE_API &#x3D; &#39;&#x2F;dev-api&#39;&#x2F;">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-07-18T12:12:44.000Z">
+<meta property="article:modified_time" content="2023-07-18T12:14:44.154Z">
 <meta property="article:author" content="ayozooZ">
+<meta property="article:tag" content="前端构建工具">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://ayozoo.github.io/">
+<link rel="canonical" href="https://ayozoo.github.io/2023/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"https://ayozoo.github.io/2023/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/","path":"2023/07/18/ vue3-vite环境变量踩雷/","title":"vue3+vite环境变量踩雷"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ayozooZ</title>
+<title>vue3+vite环境变量踩雷 | ayozooZ</title>
   
 
 
@@ -72,7 +77,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">ayozooZ</h1>
+      <p class="site-title">ayozooZ</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">ayozooZ的blog</p>
@@ -126,7 +131,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -139,6 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue3-vite-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E5%9D%91"><span class="nav-number">1.</span> <span class="nav-text">vue3 + vite 环境变量踩坑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">什么是环境变量？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue2-webPack-%E4%B8%8E-vue3-vite%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">1.3.</span> <span class="nav-text">vue2+webPack 与 vue3+vite项目搭建获取环境变量的区别：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack%E3%80%81vite%E7%9B%B8%E4%BC%BC%E4%B9%8B%E5%A4%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">webpack、vite相似之处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack%E4%B8%AD%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.2.</span> <span class="nav-text">webpack中的环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vite%E4%B8%AD%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.3.</span> <span class="nav-text">vite中的环境变量</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -197,16 +203,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh">
     <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -220,13 +227,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
+      <meta itemprop="name" content="vue3+vite环境变量踩雷 | ayozooZ">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/" class="post-title-link" itemprop="url">vue3+vite环境变量踩雷</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          vue3+vite环境变量踩雷
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -250,8 +257,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="vue3-vite-环境变量踩坑"><a href="#vue3-vite-环境变量踩坑" class="headerlink" title="vue3 + vite 环境变量踩坑"></a>vue3 + vite 环境变量踩坑</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在<em><strong>env</strong></em>的俩个配置环境变量的配置文件。</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="vue3-vite-环境变量踩坑"><a href="#vue3-vite-环境变量踩坑" class="headerlink" title="vue3 + vite 环境变量踩坑"></a>vue3 + vite 环境变量踩坑</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在<em><strong>env</strong></em>的俩个配置环境变量的配置文件。</p>
 <p>例如以下生产环境、开发环境的环境变量文件：</p>
 <figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.env.development 生产环境变量文件</span></span><br><span class="line"># 开发环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/dev-api'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// .env.production</span></span><br><span class="line"># 生产环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"># 生产环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/web-api'</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 
@@ -312,7 +318,6 @@
 </li>
 </ul>
 
-      
     </div>
 
     
@@ -320,171 +325,47 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/07/12/%20React%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/facelogo.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/12/%20React%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">React入门</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2023-07-12 23:50:22 / Modified: 23:51:36" itemprop="dateCreated datePublished" datetime="2023-07-12T23:50:22+08:00">2023-07-12</time>
-    </span>
-
-  
-</div>
-
           
-        </div>
-      </header>
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>你好我是React</p>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>ayozooZ
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://ayozoo.github.io/2023/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/" title="vue3+vite环境变量踩雷">https://ayozoo.github.io/2023/07/18/ vue3-vite环境变量踩雷/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
 
-      
-    </div>
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/" rel="tag"># 前端构建工具</a>
+          </div>
 
-    
-    
-    
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_wechat"></a>
+      <a class="a2a_button_twitter"></a>
+  </div>
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/12/%20React%E5%85%A5%E9%97%A8/" rel="prev" title="React入门">
+                  <i class="fa fa-chevron-left"></i> React入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/06/29/%20hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/facelogo.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/06/29/%20hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-06-29 22:09:53" itemprop="dateCreated datePublished" datetime="2023-06-29T22:09:53+08:00">2023-06-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-06-30 00:44:39" itemprop="dateModified" datetime="2023-06-30T00:44:39+08:00">2023-06-30</time>
-    </span>
-
-  
-</div>
-
-          
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h2 id="my-blog"><a href="#my-blog" class="headerlink" title="my blog"></a>my blog</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></tbody></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 

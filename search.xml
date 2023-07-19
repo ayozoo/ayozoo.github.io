@@ -4,6 +4,9 @@
     <title>webpack、vite的自动导包的&quot;爱恨情仇&quot;</title>
     <url>/2023/07/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
     <content><![CDATA[<h1 id="webpack、vite的自动导包的”爱恨情仇”"><a href="#webpack、vite的自动导包的”爱恨情仇”" class="headerlink" title="webpack、vite的自动导包的”爱恨情仇”"></a>webpack、vite的自动导包的”爱恨情仇”</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在开发Vue3+Vite的统一基座工程，遇到了模块自动导入的不同构建工具的引入方式，特此记录。</p>
+<span id="more"></span>
+
+
 <p>在项目中，为了避免频繁导入。大家都会在对应，例如项目使用Webpack 打包工具的。在其项目<em><strong>store</strong></em>文件下其中的index.js 文件中使用webpack提供的api<code>require.context</code>的方法实现自动导入。</p>
 <h2 id="ES-模块规范"><a href="#ES-模块规范" class="headerlink" title="ES 模块规范"></a>ES 模块规范</h2><p>在实现自动导入模块前，我们先了解下<code>ES 模块规范</code>。</p>
 <p>所谓的<code>ES模块规范</code>,即 JavaScript 的标准模块系统，它允许您使用 <code>import</code> 和 <code>export</code> 关键字来导入和导出模块。这是现代 JavaScript 中推荐使用的模块化方式。</p>

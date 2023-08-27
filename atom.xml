@@ -6,7 +6,7 @@
   <link href="https://ayozoo.github.io/atom.xml" rel="self"/>
   
   <link href="https://ayozoo.github.io/"/>
-  <updated>2023-07-19T13:23:08.948Z</updated>
+  <updated>2023-08-27T14:51:08.819Z</updated>
   <id>https://ayozoo.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>http vs websocket</title>
+    <link href="https://ayozoo.github.io/2023/08/27/%20websocket/"/>
+    <id>https://ayozoo.github.io/2023/08/27/%20websocket/</id>
+    <published>2023-08-27T13:22:45.000Z</published>
+    <updated>2023-08-27T14:51:08.819Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h1><pre><code>串行通信中，数据通常是在俩个终端之间进行传送，根据数据流的传输方向分为以下三种基本传送方式：单工、半双工和全双工。</code></pre><h4 id="基本区别为："><a href="#基本区别为：" class="headerlink" title="基本区别为："></a>基本区别为：</h4><ul><li><code>单工</code>：单工通信只有一根数据线，通信只在一个方向上进行，这种方式的应用实例有：监视器、打印机、电视机等。</li><li><code>半双工</code>：半双工通信也只有一根数据线，它也单工的区别是这根数据线既可作发送又可作发接收，虽然数据可在两个方向上传送，但通信双方不能同时收发数据。<strong>http协议采用的就是这个通信方式</strong></li><li><code>全双工</code>：　数据的发送和接收用两根不同的数据线，通信双方在同一时刻都能进行发送和接收，这一工作方式称为全双工通信。在这种方式下，通信双方都有发送器和接收器，发送和接收可同时进行，没有时间延迟。<strong>websocket采用的就是这个通信方式</strong></li></ul><h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><ul><li>http协议主要关注的是  客户端——&gt;服务器（获取资源）</li></ul><p>特点：无状态协议；<br>     每个请求都是独立的；<br>     请求应答模式，服务器无法主动给客户端推送消息（单工，<em>半双工</em>，全双工）<br>     http受浏览器同源策略的影响</p><h1 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h1><p>双向通信（全双工协议）每次不需要重新建立连接，可以一直相互通信</p><h1 id="不使用websocket-以前的双向通信的实现方式"><a href="#不使用websocket-以前的双向通信的实现方式" class="headerlink" title="不使用websocket 以前的双向通信的实现方式"></a>不使用websocket 以前的双向通信的实现方式</h1><p>Comet，主要是为了是实现服务端可以像客户端桶送数据，为了继绝实时性比较高的情况。</p><ul><li>1.轮询（客户端定期向服务端发送请求采用方式）<br>轮询会在的问题：<br>轮询方式会存在<strong>竞速问题</strong>，无法保证请求的先后顺序，可能会存在多个请求返回的结果同时修改资源</li><li>2.长轮询</li><li>3.iframe流</li><li>4.sse EventSource（只能推送文本消息）</li><li>5.webSocket</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;通信&quot;&gt;&lt;a href=&quot;#通信&quot; class=&quot;headerlink&quot; title=&quot;通信&quot;&gt;&lt;/a&gt;通信&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;串行通信中，数据通常是在俩个终端之间进行传送，根据数据流的传输方向分为以下三种基本传送方式：单工、半双工和全双工。
+&lt;/co</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>webpack、vite的自动导包的&quot;爱恨情仇&quot;</title>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ayozoo.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="React入门之添加交互界面上的控件对随着用户的输入而更新。例如点击按钮切换轮播图的展示。在React中，随着时间变化的数据称为状态（state）。可以向任何组件添加状态，按需去进行更新。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React入门之添加交互">
+<meta property="og:url" content="https://ayozoo.github.io/2022/07/12/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/index.html">
+<meta property="og:site_name" content="ayozooZ">
+<meta property="og:description" content="React入门之添加交互界面上的控件对随着用户的输入而更新。例如点击按钮切换轮播图的展示。在React中，随着时间变化的数据称为状态（state）。可以向任何组件添加状态，按需去进行更新。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-07-12T15:50:22.000Z">
+<meta property="article:modified_time" content="2023-11-01T15:16:14.807Z">
+<meta property="article:author" content="ayozooZ">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://ayozoo.github.io/2022/07/12/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"https://ayozoo.github.io/2022/07/12/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/","path":"2022/07/12/ React-添加交互/","title":"React入门之添加交互"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>React入门之添加交互 | ayozooZ</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="ayozooZ" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ayozooZ</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">ayozooZ的blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React%E5%85%A5%E9%97%A8%E4%B9%8B%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92"><span class="nav-number">1.</span> <span class="nav-text">React入门之添加交互</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">响应事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%8D%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是响应事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">事件处理函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">添加事件处理函数步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">事件函数特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E9%99%B7%E9%98%B1"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">事件处理函数传递的陷阱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%B8%AD%E8%AF%BB%E5%8F%96props"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">在事件处理函数中读取props</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BAprops%E4%BC%A0%E9%80%92"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">将事件处理函数作为props传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0prop"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">命名事件处理函数prop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">事件传播</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">阻止传播</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onClickCapture%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.2.8.1.</span> <span class="nav-text">onClickCapture捕获所有事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.2.9.</span> <span class="nav-text">传递处理函数作为事件传播的代替方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.1.2.10.</span> <span class="nav-text">阻止默认行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%8C%85%E5%90%AB%E5%89%AF%E4%BD%9C%E7%94%A8%E5%90%97"><span class="nav-number">1.1.2.11.</span> <span class="nav-text">事件函数可以包含副作用吗</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ayozooZ</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh">
+    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2022/07/12/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ayozooZ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ayozooZ">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="React入门之添加交互 | ayozooZ">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React入门之添加交互
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-07-12 23:50:22" itemprop="dateCreated datePublished" datetime="2022-07-12T23:50:22+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-11-01 23:16:14" itemprop="dateModified" datetime="2023-11-01T23:16:14+08:00">2023-11-01</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>2.4k</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>8 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="React入门之添加交互"><a href="#React入门之添加交互" class="headerlink" title="React入门之添加交互"></a>React入门之添加交互</h1><p>界面上的控件对随着用户的输入而更新。例如点击按钮切换轮播图的展示。在React中，随着时间变化的数据称为<strong>状态（state）</strong>。可以向任何组件添加状态，<strong>按需去进行更新</strong>。</p>
+<span id="more"></span>
+
+
+<h2 id="响应事件"><a href="#响应事件" class="headerlink" title="响应事件"></a>响应事件</h2><h3 id="什么是响应事件"><a href="#什么是响应事件" class="headerlink" title="什么是响应事件"></a>什么是响应事件</h3><p>React允许我们在JSX中添加时间处理程序。事件处理程序是我们自己定义的函数。比如我们界面交互时：点击、悬停、焦点聚焦等交互事件。</p>
+<p>我们在自己的组件中可以定义我们自己的<strong>事件处理程序</strong>。<strong>做法是往我们的组件时间处理程序props指定特定应用的名称</strong>。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">// 定义button组件 通过props接收onclick事件</span><br><span class="line">// {children} 作为插槽接收</span><br><span class="line">function Button({ onClick, children }) {</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick={onClick}&gt;</span><br><span class="line">      {children}</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 定义Toolbar 通过props接收onPlayMovie、onUploadImage事件</span><br><span class="line">// 这里的"Play Movie、 Upload Image" 作为子组件插入</span><br><span class="line">function Toolbar({ onPlayMovie, onUploadImage }) {</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;Button onClick={onPlayMovie}&gt;</span><br><span class="line">        Play Movie</span><br><span class="line">      &lt;/Button&gt;</span><br><span class="line">      &lt;Button onClick={onUploadImage}&gt;</span><br><span class="line">        Upload Image</span><br><span class="line">      &lt;/Button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 导出最终组件</span><br><span class="line">// 这里的onPlayMovie、onUploadImage就是对应Toolbar组件接收的事件处理程序、最终传入Button的onClick事件中</span><br><span class="line">export default function App() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;Toolbar</span><br><span class="line">      onPlayMovie={() =&gt; alert('Playing!')}</span><br><span class="line">      onUploadImage={() =&gt; alert('Uploading!')}</span><br><span class="line">    /&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="事件处理函数"><a href="#事件处理函数" class="headerlink" title="事件处理函数"></a>事件处理函数</h3><h4 id="添加事件处理函数步骤："><a href="#添加事件处理函数步骤：" class="headerlink" title="添加事件处理函数步骤："></a>添加事件处理函数步骤：</h4><ol>
+<li>首先定义一个函数组件</li>
+<li>在函数组件中定义事件处理程序的函数，然后<strong>将其作为prop传入</strong>合适的JSX标签。</li>
+</ol>
+<h4 id="事件函数特点："><a href="#事件函数特点：" class="headerlink" title="事件函数特点："></a>事件函数特点：</h4><ul>
+<li><p>通常是在<strong>组件内部</strong>定义</p>
+</li>
+<li><p>名称<code>handle</code>开头，后面跟事件名称</p>
+<p>事件处理函数可以在JSX中有俩种定义方式：</p>
+<ul>
+<li>内联事件处理函数（<em><strong>函数体比较短使用较为方便</strong></em>）</li>
+<li>简洁函数</li>
+</ul>
+</li>
+</ul>
+<p>这时候看个例子：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">export default function Button() {</span><br><span class="line">  function handleClick() {</span><br><span class="line">    alert('你点击了我！');</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick={handleClick}&gt;</span><br><span class="line">      点我</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 简洁箭头函数</span><br><span class="line">  &lt;button onClick={() =&gt; {</span><br><span class="line">  alert('你点击了我！');</span><br><span class="line">}}&gt;</span><br><span class="line">  </span><br><span class="line">// 内联写法</span><br><span class="line">&lt;button onClick={function handleClick() {</span><br><span class="line">  alert('你点击了我！');</span><br><span class="line">}}&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="事件处理函数传递的陷阱"><a href="#事件处理函数传递的陷阱" class="headerlink" title="事件处理函数传递的陷阱"></a>事件处理函数传递的陷阱</h4><p>在Vue中会出现事件绑定时，直接触发事件处理程序。在这里存在陷阱。</p>
+<p>传递给事件处理函数的函数应直接传递，而非调用。看下面的例子：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>传递一个函数（正确）</strong></th>
+<th align="center"><strong>调用一个函数（错误）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><button onclick="{handleClick}"></button></td>
+<td align="center"><button onclick="{handleClick()}"></button></td>
+</tr>
+</tbody></table>
+<p>这样看来其实，区别很微妙。</p>
+<p>左侧示例中<code>handleClick</code>函数作为<code>onClick</code>的事件处理函数传递。这个是告诉React这个事件是当用户点击按钮时才会触发函数。</p>
+<p>右侧示例中<code>handleClick()</code>中最后的<code>()</code>会在<strong>渲染过程中立即触发函数</strong>，即使没有任何点击。这是因为<strong>JSX<code>{</code>和<code>}</code>之间的Javascript会立即执行</strong>。</p>
+<p>当传入内联函数时，会出现不同的陷阱。</p>
+<table>
+<thead>
+<tr>
+<th><strong>传递一个函数（正确）</strong></th>
+<th><strong>调用一个函数（错误）</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;button onClick={() =&gt; alert(‘…’)}&gt;</td>
+<td>&lt;button onClick={alert(‘…’)}&gt;</td>
+</tr>
+</tbody></table>
+<p>右侧的写法，将会导致组件渲染时，每次都触发。</p>
+<p>左侧就是创建了一个稍后调用的函数，而不是在每次渲染时执行其内部的代码。</p>
+<p><strong>综上，就是想要定义内联函数事件处理函数，要将其包装在匿名函数中。</strong></p>
+<h4 id="在事件处理函数中读取props"><a href="#在事件处理函数中读取props" class="headerlink" title="在事件处理函数中读取props"></a>在事件处理函数中读取props</h4><p>事件函数声明于组件内部，因此他们可以直接访问组件的props。</p>
+<p>例如：事件处理函数就可以接收到message</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function AlertButton({ message, children }) {</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick={() =&gt; alert(message)}&gt;</span><br><span class="line">      {children}</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export default function Toolbar() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;AlertButton message="正在播放！"&gt;</span><br><span class="line">        播放电影</span><br><span class="line">      &lt;/AlertButton&gt;</span><br><span class="line">      &lt;AlertButton message="正在上传！"&gt;</span><br><span class="line">        上传图片</span><br><span class="line">      &lt;/AlertButton&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="将事件处理函数作为props传递"><a href="#将事件处理函数作为props传递" class="headerlink" title="将事件处理函数作为props传递"></a>将事件处理函数作为props传递</h4><p>通常，我们会在父组件中定义子组件的事件处理函数。为此将组件从父组件接收的prop作为事件处理函数传递。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">// 定义一个接收事件处理函数的子组件 </span><br><span class="line">function Button({ onClick, children }) {</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick={onClick}&gt;</span><br><span class="line">      {children}</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 这里作为父组件</span><br><span class="line">// 定义一个内部事件处理函数</span><br><span class="line">// 作为props传递给button组件</span><br><span class="line">function PlayButton({ movieName }) {</span><br><span class="line">  function handlePlayClick() {</span><br><span class="line">    alert(`正在播放 ${movieName}！`);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;Button onClick={handlePlayClick}&gt;</span><br><span class="line">      播放 "{movieName}"</span><br><span class="line">    &lt;/Button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">function UploadButton() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;Button onClick={() =&gt; alert('正在上传！')}&gt;</span><br><span class="line">      上传图片</span><br><span class="line">    &lt;/Button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export default function Toolbar() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;PlayButton movieName="魔女宅急便" /&gt;</span><br><span class="line">      &lt;UploadButton /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="命名事件处理函数prop"><a href="#命名事件处理函数prop" class="headerlink" title="命名事件处理函数prop"></a>命名事件处理函数prop</h4><p>对于浏览器内置组件（<code>&lt;button&gt;</code> 和 <code>&lt;div&gt;</code>），仅支持浏览器事件名称，例如，onclick。<strong>但是当我们构建自己的组件时，可以任意命名事件处理函数的prop。</strong></p>
+<p>当组件支持多种交互时，可以根据不同的应用程序命名事件处理函数props。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 这里onClick接收的还是浏览器内置的&lt;button&gt;（小写）</span><br><span class="line">// 仍然需要使用 onClick prop，而自定义的 Button 组件接收到的 prop 名称还是可以定义。</span><br><span class="line">function Button({ onSmash, children }) {</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick={onSmash}&gt;</span><br><span class="line">      {children}</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export default function App() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;Button onSmash={() =&gt; alert('正在播放！')}&gt;</span><br><span class="line">        播放电影</span><br><span class="line">      &lt;/Button&gt;</span><br><span class="line">      &lt;Button onSmash={() =&gt; alert('正在上传！')}&gt;</span><br><span class="line">        上传图片</span><br><span class="line">      &lt;/Button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="事件传播"><a href="#事件传播" class="headerlink" title="事件传播"></a>事件传播</h4><p><strong>事件处理函数还将捕获来自任何子组件的事件。</strong>通常，我们会说事件沿着树向上“冒泡”或者“传播”：他从事件发生的地方开始，然后沿着树向上传播。</p>
+<p><strong>在React中所有的事件都会传播，除了onScroll，它仅适用于附加到的JSX标签中。</strong></p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 当你点击button时，先触发他自身的onClick</span><br><span class="line">// 在执行父级div的onClick</span><br><span class="line">// 但是如果只点击了父级的那么只会触发父级本身的onClick</span><br><span class="line">export default function Toolbar() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className="Toolbar" onClick={() =&gt; {</span><br><span class="line">      alert('你点击了 toolbar ！');</span><br><span class="line">    }}&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; alert('正在播放！')}&gt;</span><br><span class="line">        播放电影</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; alert('正在上传！')}&gt;</span><br><span class="line">        上传图片</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="阻止传播"><a href="#阻止传播" class="headerlink" title="阻止传播"></a>阻止传播</h4><p>事件处理函数接收一个**<u>事件对象</u><strong>作为唯一的参数。一般通常被称为<code>e</code>,代表`event（事件）。</strong><u><em>这个可以使用此对象读取事件的有关信息。</em></u>**</p>
+<p>这个事件对象还允许阻止传播。例如：</p>
+<p>当你点击按钮时：</p>
+<ol>
+<li>React 调用了传递给 <code>&lt;button&gt;</code> 的 <code>onClick</code> 处理函数。</li>
+<li>定义在<button>中的处理函数执行了如下操作：<ul>
+<li>调用 <code>e.stopPropagation()</code>，阻止事件进一步冒泡。</li>
+<li>调用 <code>onClick</code> 函数，它是从 <code>Toolbar</code> 组件传递过来的 prop。</li>
+</ul>
+</button></li>
+<li>在 <code>Toolbar</code> 组件中定义的函数，显示按钮对应的 alert。</li>
+<li>由于传播被阻止，父级 <code>&lt;div&gt;</code> 的 <code>onClick</code> 处理函数不会执行。</li>
+</ol>
+<p>由于调用了 <code>e.stopPropagation()</code>，点击按钮现在将只显示一个 alert（来自 <code>&lt;button&gt;</code>），而并非两个（分别来自 <code>&lt;button&gt;</code> 和父级 toolbar <code>&lt;div&gt;</code>）。点击按钮与点击周围的 toolbar 不同，因此阻止传播对这个 UI 是有意义的。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function Button({ onClick, children }) {</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick={e =&gt; {</span><br><span class="line">      e.stopPropagation();</span><br><span class="line">      onClick();</span><br><span class="line">    }}&gt;</span><br><span class="line">      {children}</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export default function Toolbar() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className="Toolbar" onClick={() =&gt; {</span><br><span class="line">      alert('你点击了 toolbar ！');</span><br><span class="line">    }}&gt;</span><br><span class="line">      &lt;Button onClick={() =&gt; alert('正在播放！')}&gt;</span><br><span class="line">        播放电影</span><br><span class="line">      &lt;/Button&gt;</span><br><span class="line">      &lt;Button onClick={() =&gt; alert('正在上传！')}&gt;</span><br><span class="line">        上传图片</span><br><span class="line">      &lt;/Button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>拓展：</p>
+<p>少数情况下，你可能需要捕获子元素上的所有事件，<strong>即便它们阻止了传播</strong>。例如，你可能想对每次点击进行埋点记录，传播逻辑暂且不论。那么你可以通过在事件名称末尾添加 <code>Capture</code> 来实现这一点：</p>
+<h5 id="onClickCapture捕获所有事件"><a href="#onClickCapture捕获所有事件" class="headerlink" title="onClickCapture捕获所有事件"></a><strong>onClickCapture</strong>捕获所有事件</h5><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div onClickCapture={() =&gt; { /* 这会首先执行 */ }}&gt;</span><br><span class="line">  &lt;button onClick={e =&gt; e.stopPropagation()} /&gt;</span><br><span class="line">  &lt;button onClick={e =&gt; e.stopPropagation()} /&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>每个事件分三个阶段传播：</p>
+<ol>
+<li>它向下传播，调用所有的 <code>onClickCapture</code> 处理函数。</li>
+<li>它执行被点击元素的 <code>onClick</code> 处理函数。</li>
+<li>它向上传播，调用所有的 <code>onClick</code> 处理函数。</li>
+</ol>
+<p>捕获事件对于路由或数据分析之类的代码很有用，但你可能不会在应用程序代码中使用它们。</p>
+<h4 id="传递处理函数作为事件传播的代替方案"><a href="#传递处理函数作为事件传播的代替方案" class="headerlink" title="传递处理函数作为事件传播的代替方案"></a>传递处理函数作为事件传播的代替方案</h4><p>看这一段代码</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Button({ onClick, children }) {</span><br><span class="line">  return (</span><br><span class="line">    &lt;button onClick={e =&gt; {</span><br><span class="line">      e.stopPropagation();</span><br><span class="line">      onClick();</span><br><span class="line">    }}&gt;</span><br><span class="line">      {children}</span><br><span class="line">    &lt;/button&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>此处的点击事件处理函数先执行了一段代码，<strong>然后</strong>调用了父组件传递的 <code>onClick</code> prop。</p>
+<p>也可以在调用父元素<code>onClick</code>函数之前，添加其他代码。此模式是事件传播的另一种 <strong>替代方案</strong> 。它让子组件处理事件，同时也让父组件指定一些额外的行为。与事件传播不同，它并非自动。但使用这种模式的好处是你可以清楚地追踪因某个事件的触发而执行的整条代码链。</p>
+<p>如果你依赖于事件传播，而且很难追踪哪些处理程序在执行，及其执行的原因，可以尝试这种方法。</p>
+<h4 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h4><p>某些浏览器事件具有与事件相关联的默认行为。例如，点击 <code>&lt;form&gt;</code> 表单内部的按钮会触发表单提交事件，默认情况下将重新加载整个页面。</p>
+<p>可以调用事件对象中的 <code>e.preventDefault()</code> 来阻止这种情况发生：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export default function Signup() {</span><br><span class="line">  return (</span><br><span class="line">    &lt;form onSubmit={e =&gt; {</span><br><span class="line">      e.preventDefault();</span><br><span class="line">      alert('提交表单！');</span><br><span class="line">    }}&gt;</span><br><span class="line">      &lt;input /&gt;</span><br><span class="line">      &lt;button&gt;发送&lt;/button&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>不要混淆 <code>e.stopPropagation()</code> 和 <code>e.preventDefault()</code>。它们都很有用，但二者并不相关：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/docs/Web/API/Event/stopPropagation"><code>e.stopPropagation()</code></a> 阻止触发绑定在外层标签上的事件处理函数。</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/docs/Web/API/Event/preventDefault"><code>e.preventDefault()</code></a> 阻止少数事件的默认浏览器行为。</li>
+</ul>
+<h4 id="事件函数可以包含副作用吗"><a href="#事件函数可以包含副作用吗" class="headerlink" title="事件函数可以包含副作用吗"></a>事件函数可以包含副作用吗</h4><p>当然可以！事件处理函数是执行副作用的最佳位置。</p>
+<p>与渲染函数不同，事件处理函数不需要是 <a target="_blank" rel="noopener" href="https://react.docschina.org/learn/keeping-components-pure">纯函数</a>，因此它是用来 <em>更改</em> 某些值的绝佳位置。例如，更改输入框的值以响应键入，或者更改列表以响应按钮的触发。但是，为了更改某些信息，你首先需要某种方式存储它。在 React 中，这是通过 <a target="_blank" rel="noopener" href="https://react.docschina.org/learn/state-a-components-memory">state（组件的记忆）</a> 来完成的。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/12/%20React-%E6%8F%8F%E8%BF%B0UI/" rel="prev" title="React入门之描述UI">
+                  <i class="fa fa-chevron-left"></i> React入门之描述UI
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/" rel="next" title="vue3+vite环境变量踩雷">
+                  vue3+vite环境变量踩雷 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ayozooZ</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="Word count total">26k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">1:27</span>
+  </span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

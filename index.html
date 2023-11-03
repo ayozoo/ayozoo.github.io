@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width">
 <meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.svg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.svg">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
@@ -61,6 +61,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -82,6 +85,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/home/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">5</span></a></li>
+  </ul>
+</nav>
 
 
 
@@ -109,6 +116,8 @@
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ayozooZ"
+      src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">ayozooZ</p>
   <div class="site-description" itemprop="description"></div>
 </div>
@@ -120,12 +129,28 @@
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
-      <div class="site-state-item site-state-tags">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
         <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ayozoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ayozoo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/Nikon_?type=blog" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;Nikon_?type&#x3D;blog" rel="noopener me" target="_blank"><i class="fab fa-book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.cn/user/1869629711195757" title="掘金 → https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;1869629711195757" rel="noopener me" target="_blank"><i class="fab fa-chain-broken fa-fw"></i>掘金</a>
+      </span>
+  </div>
 
         </div>
       </div>
@@ -147,10 +172,10 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/11/01/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/">
+    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="ayozooZ">
     </span>
 
@@ -165,7 +190,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/01/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/" class="post-title-link" itemprop="url">React入门之添加交互</a>
+          <a href="/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/" class="post-title-link" itemprop="url">React入门之添加交互</a>
         </h2>
 
         <div class="post-meta-container">
@@ -176,14 +201,23 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2023-11-01 23:21:22" itemprop="dateCreated datePublished" datetime="2023-11-01T23:21:22+08:00">2023-11-01</time>
+      <time title="Created: 2023-11-02 23:21:22" itemprop="dateCreated datePublished" datetime="2023-11-02T23:21:22+08:00">2023-11-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-11-02 22:32:30" itemprop="dateModified" datetime="2023-11-02T22:32:30+08:00">2023-11-02</time>
+      <time title="Modified: 2023-11-03 19:08:14" itemprop="dateModified" datetime="2023-11-03T19:08:14+08:00">2023-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
     </span>
 
   
@@ -211,10 +245,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="React入门之添加交互"><a href="#React入门之添加交互" class="headerlink" title="React入门之添加交互"></a>React入门之添加交互</h1><p>界面上的控件对随着用户的输入而更新。例如点击按钮切换轮播图的展示。在React中，随着时间变化的数据称为<strong>状态（state）</strong>。可以向任何组件添加状态，<strong>按需去进行更新</strong>。</p>
+          <hr>
+<h1 id="React入门之添加交互"><a href="#React入门之添加交互" class="headerlink" title="React入门之添加交互"></a>React入门之添加交互</h1><p>界面上的控件对随着用户的输入而更新。例如点击按钮切换轮播图的展示。在React中，随着时间变化的数据称为<strong>状态（state）</strong>。可以向任何组件添加状态，<strong>按需去进行更新</strong>。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2023/11/01/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/#more" rel="contents">
+              <a class="btn" href="/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -248,7 +283,7 @@
     <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/10/31/%20React-%E6%8F%8F%E8%BF%B0UI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="ayozooZ">
     </span>
 
@@ -281,7 +316,16 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-11-01 23:21:17" itemprop="dateModified" datetime="2023-11-01T23:21:17+08:00">2023-11-01</time>
+      <time title="Modified: 2023-11-03 19:09:01" itemprop="dateModified" datetime="2023-11-03T19:09:01+08:00">2023-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
     </span>
 
   
@@ -309,7 +353,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>React应用就是被组件的独立UI片段构建，React组件本质就是可以添加任意标签的JavaScript函数。</p>
+          <hr>
+<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>React应用就是被组件的独立UI片段构建，React组件本质就是可以添加任意标签的JavaScript函数。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/10/31/%20React-%E6%8F%8F%E8%BF%B0UI/#more" rel="contents">
@@ -346,7 +391,7 @@
     <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/08/27/%20websocket/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="ayozooZ">
     </span>
 
@@ -445,7 +490,7 @@
     <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2022/10/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="ayozooZ">
     </span>
 
@@ -543,7 +588,7 @@
     <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="ayozooZ">
     </span>
 

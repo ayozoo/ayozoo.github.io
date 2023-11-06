@@ -27,7 +27,7 @@
 <meta property="og:description" content="React入门之添加交互界面上的控件对随着用户的输入而更新。例如点击按钮切换轮播图的展示。在React中，随着时间变化的数据称为状态（state）。可以向任何组件添加状态，按需去进行更新。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-11-02T15:21:22.000Z">
-<meta property="article:modified_time" content="2023-11-04T14:19:57.987Z">
+<meta property="article:modified_time" content="2023-11-06T14:03:57.726Z">
 <meta property="article:author" content="ayozooZ">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React%E5%85%A5%E9%97%A8%E4%B9%8B%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92"><span class="nav-number">1.</span> <span class="nav-text">React入门之添加交互</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">响应事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%8D%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是响应事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">事件处理函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">添加事件处理函数步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">事件函数特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E9%99%B7%E9%98%B1"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">事件处理函数传递的陷阱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%B8%AD%E8%AF%BB%E5%8F%96props"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">在事件处理函数中读取props</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BAprops%E4%BC%A0%E9%80%92"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">将事件处理函数作为props传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0prop"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">命名事件处理函数prop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">事件传播</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">阻止传播</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onClickCapture%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.2.8.1.</span> <span class="nav-text">onClickCapture捕获所有事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.2.9.</span> <span class="nav-text">传递处理函数作为事件传播的代替方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.1.2.10.</span> <span class="nav-text">阻止默认行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%8C%85%E5%90%AB%E5%89%AF%E4%BD%9C%E7%94%A8%E5%90%97"><span class="nav-number">1.1.2.11.</span> <span class="nav-text">事件函数可以包含副作用吗</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state%EF%BC%9A%E7%BB%84%E4%BB%B6%E7%9A%84%E8%AE%B0%E5%BF%86"><span class="nav-number">1.2.</span> <span class="nav-text">state：组件的记忆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%96%B0%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">如何使用新数据更新组件?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E6%97%B6%E5%80%99%E5%B0%B1%E5%BC%95%E5%87%BA%E4%BA%86%EF%BC%8C%E4%B8%BB%E4%BA%BA%E5%85%AC%EF%BC%9AuseStateHook%E3%80%82"><span class="nav-number">1.2.2.</span> <span class="nav-text">这时候就引出了，主人公：useStateHook。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%EF%BC%88%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AAstate%E5%8F%98%E9%87%8F%EF%BC%89"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">使用姿势（如何添加一个state变量）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90useState"><span class="nav-number">1.2.3.</span> <span class="nav-text">深度剖析useState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88React%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E8%A6%81%E8%BF%94%E5%9B%9E%E5%93%AA%E4%B8%AAstate%EF%BC%9F%EF%BC%9F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">拓展：为什么React如何知道要返回哪个state？？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#State%E6%98%AF%E9%9A%94%E7%A6%BB%E4%B8%94%E7%A7%81%E6%9C%89%E7%9A%84"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">State是隔离且私有的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%92%8C%E6%8F%90%E4%BA%A4"><span class="nav-number">1.3.</span> <span class="nav-text">渲染和提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E8%A7%A6%E5%8F%91%E4%B8%80%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="nav-number">1.3.1.</span> <span class="nav-text">步骤1：触发一次渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">初次渲染</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9B%B4%E6%96%B0%E6%97%B6%E9%87%8D%E7%8E%B0%E6%B8%B2%E6%9F%93"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">状态更新时重现渲染</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42-React%E6%B8%B2%E6%9F%93%E4%BD%A0%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-number">1.3.2.</span> <span class="nav-text">步骤2:React渲染你的组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.3.2.0.1.</span> <span class="nav-text">性能优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43-React%E6%8A%8A%E6%9B%B4%E6%94%B9%E6%8F%90%E4%BA%A4%E5%88%B0DOM%E4%B8%8A"><span class="nav-number">1.3.3.</span> <span class="nav-text">步骤3:React把更改提交到DOM上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%98%E5%88%B6"><span class="nav-number">1.3.4.</span> <span class="nav-text">浏览器绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state%E5%A6%82%E5%90%8C%E4%B8%80%E5%BC%A0%E5%BF%AB%E7%85%A7"><span class="nav-number">1.4.</span> <span class="nav-text">state如同一张快照</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEstate%E4%BC%9A%E8%A7%A6%E5%8F%91%E6%B8%B2%E6%9F%93"><span class="nav-number">1.4.1.</span> <span class="nav-text">设置state会触发渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E4%BC%9A%E5%8F%8A%E6%97%B6%E7%94%9F%E5%87%BA%E4%B8%80%E5%BC%A0%E5%BF%AB%E7%85%A7"><span class="nav-number">1.4.2.</span> <span class="nav-text">渲染会及时生出一张快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E7%9D%80%E6%97%B6%E9%97%B4%E5%8F%98%E5%8C%96%E7%9A%84state"><span class="nav-number">1.4.3.</span> <span class="nav-text">随着时间变化的state</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React%E5%85%A5%E9%97%A8%E4%B9%8B%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92"><span class="nav-number">1.</span> <span class="nav-text">React入门之添加交互</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">响应事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%8D%E5%BA%94%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是响应事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">事件处理函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">添加事件处理函数步骤：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">事件函数特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BC%A0%E9%80%92%E7%9A%84%E9%99%B7%E9%98%B1"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">事件处理函数传递的陷阱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%B8%AD%E8%AF%BB%E5%8F%96props"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">在事件处理函数中读取props</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BAprops%E4%BC%A0%E9%80%92"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">将事件处理函数作为props传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0prop"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">命名事件处理函数prop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.2.7.</span> <span class="nav-text">事件传播</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.2.8.</span> <span class="nav-text">阻止传播</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onClickCapture%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E4%BA%8B%E4%BB%B6"><span class="nav-number">1.1.2.8.1.</span> <span class="nav-text">onClickCapture捕获所有事件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E4%BA%8B%E4%BB%B6%E4%BC%A0%E6%92%AD%E7%9A%84%E4%BB%A3%E6%9B%BF%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.2.9.</span> <span class="nav-text">传递处理函数作为事件传播的代替方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="nav-number">1.1.2.10.</span> <span class="nav-text">阻止默认行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%8C%85%E5%90%AB%E5%89%AF%E4%BD%9C%E7%94%A8%E5%90%97"><span class="nav-number">1.1.2.11.</span> <span class="nav-text">事件函数可以包含副作用吗</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state%EF%BC%9A%E7%BB%84%E4%BB%B6%E7%9A%84%E8%AE%B0%E5%BF%86"><span class="nav-number">1.2.</span> <span class="nav-text">state：组件的记忆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%96%B0%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%BB%84%E4%BB%B6"><span class="nav-number">1.2.1.</span> <span class="nav-text">如何使用新数据更新组件?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E6%97%B6%E5%80%99%E5%B0%B1%E5%BC%95%E5%87%BA%E4%BA%86%EF%BC%8C%E4%B8%BB%E4%BA%BA%E5%85%AC%EF%BC%9AuseStateHook%E3%80%82"><span class="nav-number">1.2.2.</span> <span class="nav-text">这时候就引出了，主人公：useStateHook。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF%EF%BC%88%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AAstate%E5%8F%98%E9%87%8F%EF%BC%89"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">使用姿势（如何添加一个state变量）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90useState"><span class="nav-number">1.2.3.</span> <span class="nav-text">深度剖析useState</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88React%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E8%A6%81%E8%BF%94%E5%9B%9E%E5%93%AA%E4%B8%AAstate%EF%BC%9F%EF%BC%9F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">拓展：为什么React如何知道要返回哪个state？？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#State%E6%98%AF%E9%9A%94%E7%A6%BB%E4%B8%94%E7%A7%81%E6%9C%89%E7%9A%84"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">State是隔离且私有的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%92%8C%E6%8F%90%E4%BA%A4"><span class="nav-number">1.3.</span> <span class="nav-text">渲染和提交</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E8%A7%A6%E5%8F%91%E4%B8%80%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="nav-number">1.3.1.</span> <span class="nav-text">步骤1：触发一次渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">初次渲染</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9B%B4%E6%96%B0%E6%97%B6%E9%87%8D%E7%8E%B0%E6%B8%B2%E6%9F%93"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">状态更新时重现渲染</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A42-React%E6%B8%B2%E6%9F%93%E4%BD%A0%E7%9A%84%E7%BB%84%E4%BB%B6"><span class="nav-number">1.3.2.</span> <span class="nav-text">步骤2:React渲染你的组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">1.3.2.0.1.</span> <span class="nav-text">性能优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A43-React%E6%8A%8A%E6%9B%B4%E6%94%B9%E6%8F%90%E4%BA%A4%E5%88%B0DOM%E4%B8%8A"><span class="nav-number">1.3.3.</span> <span class="nav-text">步骤3:React把更改提交到DOM上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%98%E5%88%B6"><span class="nav-number">1.3.4.</span> <span class="nav-text">浏览器绘制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state%E5%A6%82%E5%90%8C%E4%B8%80%E5%BC%A0%E5%BF%AB%E7%85%A7"><span class="nav-number">1.4.</span> <span class="nav-text">state如同一张快照</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEstate%E4%BC%9A%E8%A7%A6%E5%8F%91%E6%B8%B2%E6%9F%93"><span class="nav-number">1.4.1.</span> <span class="nav-text">设置state会触发渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E4%BC%9A%E5%8F%8A%E6%97%B6%E7%94%9F%E5%87%BA%E4%B8%80%E5%BC%A0%E5%BF%AB%E7%85%A7"><span class="nav-number">1.4.2.</span> <span class="nav-text">渲染会及时生出一张快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E7%9D%80%E6%97%B6%E9%97%B4%E5%8F%98%E5%8C%96%E7%9A%84state"><span class="nav-number">1.4.3.</span> <span class="nav-text">随着时间变化的state</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%8A%E4%B8%80%E7%B3%BB%E5%88%97state%E6%9B%B4%E6%96%B0%E5%8A%A0%E5%85%A5%E9%98%9F%E5%88%97"><span class="nav-number">1.5.</span> <span class="nav-text">把一系列state更新加入队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#React%E4%BC%9A%E5%AF%B9state%E6%9B%B4%E6%96%B0%E8%BF%9B%E8%A1%8C%E6%89%B9%E5%A4%84%E7%90%86"><span class="nav-number">1.5.1.</span> <span class="nav-text">React会对state更新进行批处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8B%E6%AC%A1%E6%B8%B2%E6%9F%93%E5%89%8D%E8%AF%BB%E6%AC%A1%E6%9B%B4%E6%96%B0%E5%90%8C%E4%B8%80%E4%B8%AAstate"><span class="nav-number">1.5.2.</span> <span class="nav-text">在下次渲染前读次更新同一个state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%9C%A8%E6%9B%BF%E6%8D%A2state%E5%90%8E%E6%9B%B4%E6%96%B0state%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88"><span class="nav-number">1.5.3.</span> <span class="nav-text">如果在替换state后更新state会发生什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E5%9C%A8%E6%9B%B4%E6%96%B0state%E5%90%8E%E6%9B%BF%E6%8D%A2state%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88"><span class="nav-number">1.5.4.</span> <span class="nav-text">如果在更新state后替换state会发生什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D%E6%83%AF%E4%BE%8B"><span class="nav-number">1.5.5.</span> <span class="nav-text">命名惯例</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,7 +215,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-11-04 22:19:57" itemprop="dateModified" datetime="2023-11-04T22:19:57+08:00">2023-11-04</time>
+      <time title="Modified: 2023-11-06 22:03:57" itemprop="dateModified" datetime="2023-11-06T22:03:57+08:00">2023-11-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -234,14 +234,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>6.4k</span>
+      <span>8k</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>21 mins.</span>
+      <span>27 mins.</span>
     </span>
 </div>
 
@@ -538,6 +538,135 @@
 <p>到提示框运行时，React中存储的state可能已经发生了改变，但他是使用用户与之交互时的快照进行调度的！</p>
 <p><strong>一个state变量的值永远不会在一次渲染的内部发生变化</strong>，即使事件处理函数的代码是异步的。在<strong>那个渲染的</strong><code>onClick</code>内部，<code>number</code>的值即使在调用的<code>setNumber(number + 5)</code>之后也是<code>0</code>。它的值是在React通过调用你的组件“获取UI的快照”时就被“固定”了。</p>
 <p><strong>React 会使 state 的值始终”固定“在一次渲染的各个事件处理函数内部。</strong> 你无需担心代码运行时 state 是否发生了变化。</p>
+<h2 id="把一系列state更新加入队列"><a href="#把一系列state更新加入队列" class="headerlink" title="把一系列state更新加入队列"></a>把一系列state更新加入队列</h2><h3 id="React会对state更新进行批处理"><a href="#React会对state更新进行批处理" class="headerlink" title="React会对state更新进行批处理"></a>React会对state更新进行批处理</h3><p>在上节这个示例中，我们发现当按钮点击后，组件页面渲染数值一直是每次累加一次的。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from 'react';</span><br><span class="line"></span><br><span class="line">export default function Counter() {</span><br><span class="line">  const [number, setNumber] = useState(0);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;h1&gt;{number}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; {</span><br><span class="line">        setNumber(number + 1);</span><br><span class="line">        setNumber(number + 1);</span><br><span class="line">        setNumber(number + 1);</span><br><span class="line">      }}&gt;+3&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://react.docschina.org/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time">每一次渲染的 state 值都是固定的</a>，在第一次渲染的事件处理函数内部的<code>number</code>值总是<code>0</code>。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setNumber(0 + 1);</span><br><span class="line">setNumber(0 + 1);</span><br><span class="line">setNumber(0 + 1);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在Reac机制里，<strong>React会等到事件处理函数中的所有代码都运行完毕在处理你的state更新。</strong>这也就是为什么重新渲染只会发生在所有这些<code>setNumber()</code>调用<strong>之后的原因</strong>。</p>
+<p>就好比，点餐时。服务员不会在你说第一道菜的时候，就去厨房下单，而是等你，把菜点完、如有修改修改完后，再一次性去下单。</p>
+<p>这样就可以更新多个state变量–甚至来自多个组件的state变量–而不会触发太多的 <a target="_blank" rel="noopener" href="https://react.docschina.org/learn/render-and-commit#re-renders-when-state-updates">重新渲染</a>。这样也意味着只有在我们的事件处理函数以及其中任何代码执行完成<strong>之后</strong>，UI才会更新。这种特性也就是<strong>批处理</strong>，他会使React应用运行得更快。这样也可以帮助我们避免处理只更新了一部分state变量的令人困惑的“半成品”渲染。</p>
+<p><strong>React不会垮<em>多个</em>需要刻意触发的事件（如点击）进行批处理</strong>–每次点击都是单独处理的。React只会在一般来说安全的情况下才进行批处理。例如，如果第一次点击按钮会禁用表单，那么第二次点击就不会再次提交它。</p>
+<h3 id="在下次渲染前读次更新同一个state"><a href="#在下次渲染前读次更新同一个state" class="headerlink" title="在下次渲染前读次更新同一个state"></a>在下次渲染前读次更新同一个state</h3><p>如果想在下次渲染之前多次更新同一个state，我们可以使用<code>setNumber(n =&gt; n + 1)</code>这样传入一个根据队列中的前一个state计算下一个state函数，而不是像<code>setNumber(number + 1)</code>这样传入<strong>下一个state的值</strong>。这是告诉React“用state值做某事”而不是仅仅替换它的方法。</p>
+<p>现在尝试递增计数器：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from 'react';</span><br><span class="line"></span><br><span class="line">export default function Counter() {</span><br><span class="line">  const [number, setNumber] = useState(0);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;h1&gt;{number}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; {</span><br><span class="line">        setNumber(n =&gt; n + 1);</span><br><span class="line">        setNumber(n =&gt; n + 1);</span><br><span class="line">        setNumber(n =&gt; n + 1);</span><br><span class="line">      }}&gt;+3&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这里，<code>n =&gt; n + 1</code>被称为<strong>更新函数</strong>。当我们给他传递一个state设置函数时：</p>
+<ol>
+<li>React会将此函数加入队列，以便在事件处理函数中的所有其他代码运行后进行处理。</li>
+<li>在下一次渲染期间，React会遍历队列并更新之后的最终state。</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setNumber(n =&gt; n + 1);</span><br><span class="line">setNumber(n =&gt; n + 1);</span><br><span class="line">setNumber(n =&gt; n + 1);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>以下是React在执行事件处理函数时处理这几行代码的过程：</p>
+<ol>
+<li><code>setNumber(n =&gt; n + 1)</code>：<code>n =&gt; n + 1</code> 是一个函数。React 将它加入队列。</li>
+<li><code>setNumber(n =&gt; n + 1)</code>：<code>n =&gt; n + 1</code> 是一个函数。React 将它加入队列。</li>
+<li><code>setNumber(n =&gt; n + 1)</code>：<code>n =&gt; n + 1</code> 是一个函数。React 将它加入队列。</li>
+</ol>
+<p>在下次渲染期间调用<code>useState</code>时，React会遍历队列。之前的<code>number</code>state的值是<code>0</code>，所以这就是React作为参数<code>n</code>传递给第一个更新函数的值。然后React会获取上一个更新函数的返回值，并将其作为<code>n</code>传递给下一个更新函数，以此类推：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>更新队列</strong></th>
+<th align="center"><strong><code>n</code></strong></th>
+<th align="center"><strong>返回值</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>n =&gt; n + 1</code></td>
+<td align="center"><code>0</code></td>
+<td align="center"><code>0 + 1 = 1</code></td>
+</tr>
+<tr>
+<td align="center"><code>n =&gt; n + 1</code></td>
+<td align="center"><code>1</code></td>
+<td align="center"><code>1 + 1 = 2</code></td>
+</tr>
+<tr>
+<td align="center"><code>n =&gt; n + 1</code></td>
+<td align="center"><code>2</code></td>
+<td align="center"><code>2 + 1 = 3</code></td>
+</tr>
+</tbody></table>
+<h3 id="如果在替换state后更新state会发生什么"><a href="#如果在替换state后更新state会发生什么" class="headerlink" title="如果在替换state后更新state会发生什么"></a>如果在替换state后更新state会发生什么</h3><p>看看下面这个例子，思考下下一次<code>number</code>渲染的值是什么？</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick={() =&gt; {</span><br><span class="line">  setNumber(number + 5);</span><br><span class="line">  setNumber(n =&gt; n + 1);</span><br><span class="line">}}&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实际结果是：每次递增6</strong></p>
+<p>这个事件处理函数告诉React要做的事情：</p>
+<ol>
+<li><code>setNumber(number + 5)</code>：<code>number</code> 为 <code>0</code>，所以 <code>setNumber(0 + 5)</code>。React 将 <em>“替换为 <code>5</code>”</em> 添加到其队列中。</li>
+<li><code>setNumber(n =&gt; n + 1)</code>：<code>n =&gt; n + 1</code> 是一个更新函数。 React 将 <strong>该函数</strong> 添加到其队列中。</li>
+</ol>
+<p>在下一次渲染期间，React会遍历state队列：</p>
+<table>
+<thead>
+<tr>
+<th>更新队列</th>
+<th><code>n</code></th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“替换为 <code>5</code>”</td>
+<td><code>0</code>（未使用）</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>n =&gt; n + 1</code></td>
+<td><code>5</code></td>
+<td><code>5 + 1 = 6</code></td>
+</tr>
+</tbody></table>
+<p>React会保存<code>6</code>为最终结果并从<code>useState</code>中返回。</p>
+<p>注意：其实这时候就可以发现，<code>setState(x)</code>实际上会像<code>setState(n =&gt; x)</code>一样运行，只不过没有使用<code>n</code>!</p>
+<h3 id="如果在更新state后替换state会发生什么"><a href="#如果在更新state后替换state会发生什么" class="headerlink" title="如果在更新state后替换state会发生什么"></a>如果在更新state后替换state会发生什么</h3><p>看看这例子，你认为<code>number</code>在下一次渲染中的值是什么</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick={() =&gt; {</span><br><span class="line">  setNumber(number + 5);</span><br><span class="line">  setNumber(n =&gt; n + 1);</span><br><span class="line">  setNumber(42);</span><br><span class="line">}}&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>实际结果：第一次变更为<code>42</code>,后续一直为<code>42</code>。</strong></p>
+<p>以下是 React 在执行事件处理函数时处理这几行代码的过程：</p>
+<ol>
+<li><code>setNumber(number + 5)</code>：<code>number</code> 为 <code>0</code>，所以 <code>setNumber(0 + 5)</code>。React 将 <em>“替换为 <code>5</code>”</em> 添加到其队列中。</li>
+<li><code>setNumber(n =&gt; n + 1)</code>：<code>n =&gt; n + 1</code> 是一个更新函数。React 将该函数添加到其队列中。</li>
+<li><code>setNumber(42)</code>：React 将 <em>“替换为 <code>42</code>”</em> 添加到其队列中。</li>
+</ol>
+<p>在下一次渲染期间，React 会遍历 state 队列：</p>
+<table>
+<thead>
+<tr>
+<th>更新队列</th>
+<th><code>n</code></th>
+<th>返回值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“替换为 <code>5</code>”</td>
+<td><code>0</code>（未使用）</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td><code>n =&gt; n + 1</code></td>
+<td><code>5</code></td>
+<td><code>5 + 1 = 6</code></td>
+</tr>
+<tr>
+<td>“替换为 <code>42</code>”</td>
+<td><code>6</code>（未使用）</td>
+<td><code>42</code></td>
+</tr>
+</tbody></table>
+<p>然后 React 会保存 <code>42</code> 为最终结果并从 <code>useState</code> 中返回。</p>
+<p>总而言之，以下是我们可以考虑传递给<code>setNumber</code>state设置函数的内容：</p>
+<ul>
+<li><strong>一个更新函数</strong>（例如：<code>n =&gt; n + 1</code>）会被添加到队列中。</li>
+<li><strong>任何其他的值</strong>（例如：数字<code>5</code>）会导致“替换为<code>5</code>”被添加到队列中，已经在队列中的内容会被忽略。</li>
+</ul>
+<p>事件处理函数执行完成之后，React将重新触发渲染。再重新渲染期间，React将处理队列。更新函数会在渲染期间执行，因此<strong>更新函数必须是</strong> <strong><a target="_blank" rel="noopener" href="https://react.docschina.org/learn/keeping-components-pure">纯函数</a></strong> 并且只返回结果。不要尝试从他内部设置state或者执行其他副作用。在严格模式下，React会更新每个更新函数俩次（但是丢弃第二个结果），以便帮助发现错误。</p>
+<h3 id="命名惯例"><a href="#命名惯例" class="headerlink" title="命名惯例"></a>命名惯例</h3><p>通常使用相应的state变量的第一个字母来命名更新函数的的参数：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setEnabled(e =&gt; !e);</span><br><span class="line">setLastName(ln =&gt; ln.reverse());</span><br><span class="line">setFriendCount(fc =&gt; fc * 2);</span><br></pre></td></tr></tbody></table></figure>
+
+<p>另一个常见的惯例是重复使用完整的 state 变量名称，如 <code>setEnabled(enabled =&gt; !enabled)</code>，或使用前缀，如 <code>setEnabled(prevEnabled =&gt; !prevEnabled)</code>。</p>
 
     </div>
 
@@ -589,13 +718,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="Word count total">30k</span>
+    <span title="Word count total">32k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">1:40</span>
+    <span title="Reading time total">1:45</span>
   </span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>

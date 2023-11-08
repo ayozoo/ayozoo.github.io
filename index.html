@@ -172,6 +172,144 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/11/08/%20React%E4%B9%8Bhook%E7%AF%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="ayozooZ">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ayozooZ">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ayozooZ">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/08/%20React%E4%B9%8Bhook%E7%AF%87/" class="post-title-link" itemprop="url">React之Hook篇</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-11-08 23:21:48 / Modified: 23:34:34" itemprop="dateCreated datePublished" datetime="2023-11-08T23:21:48+08:00">2023-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">前端框架</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="Word count in article">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">Word count in article: </span>
+      <span>607</span>
+    </span>
+    <span class="post-meta-item" title="Reading time">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">Reading time &asymp;</span>
+      <span>2 mins.</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
+<p>​		<code>data</code> = &gt; <code>state</code>（状态）</p>
+<p>React，其实是一个<code>view library </code>（view库—只关注视图）</p>
+<p>​				<code>view </code>=&gt; <code>update</code> =&gt; 视图的具体状态</p>
+<p>​				<code>state</code> &lt;=&gt; <code>view</code></p>
+<p>​				state和视图是相关联的。</p>
+<p>视图是某一个状态发生了变化，所以视图要进行相应的更新。</p>
+<p><code>useState()</code>=&gt; <code>state setState</code></p>
+<p>这个可以解释为，视图需要<code>state</code>状态。通过<code>useState()</code>创建了一个状态和设置状态的方法。 </p>
+<h3 id="react设计理念"><a href="#react设计理念" class="headerlink" title="react设计理念"></a>react设计理念</h3><ul>
+<li><p>react设计理念：一切操作函数化。</p>
+</li>
+<li><p>在react中，贯彻js—–“函数是一等公民”的理念。</p>
+</li>
+<li><p>react提供的东西都是朴素的，简单的。</p>
+</li>
+<li><p>react大部分都是运行时；vue都是编译时的行为。</p>
+</li>
+</ul>
+<h3 id="使用姿势"><a href="#使用姿势" class="headerlink" title="使用姿势"></a>使用姿势</h3><p>根据状态变更，有以下俩种：</p>
+<ul>
+<li><code>setXxx(xxx)</code> <em>简单情况</em></li>
+<li><code>setXxx((x)=&gt;{ return 表达式})</code> <em>复杂情况</em></li>
+</ul>
+<ol>
+<li><p>常用写法一：<code>setXxx(xxx)</code></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+			 &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 变式</span><br><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount(count + 1);</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><code>setXxx((x)=&gt;{ return 表达式})</code></p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 1;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount((count) =&gt; {</span><br><span class="line">      return count * 2;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;X&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><h3 id="这个hook存在的价值"><a href="#这个hook存在的价值" class="headerlink" title="这个hook存在的价值"></a>这个hook存在的价值</h3><p>当存在逻辑分支如：<code>+ — * /</code> =&gt; 都是为了计算<code>count</code>,也就是<code>count</code>=&gt;多种操作方案，每一种方案可能有很多地方都需要使用。</p>
+<p><code>useReducer</code> =&gt; 会收集所有操作某一个数据的方案。</p>
+<h3 id="useReducer是什么"><a href="#useReducer是什么" class="headerlink" title="useReducer是什么"></a><code>useReducer</code>是什么</h3><p><code>useReducer(reducer,initialState)</code>接受俩个参数，第一个是<code>reducer</code>的函数，第二个是<code>initialState</code>初始值。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const [ count , dispatch ] = useReducer(reducer,0)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>dispatch</code>派发器 =&gt; 传入的不同操作类型 =&gt; 调用不同的逻辑</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">// usReducer</span><br><span class="line"></span><br><span class="line">export default function Hook() {</span><br><span class="line">  /**</span><br><span class="line">   *</span><br><span class="line">   * @param {*} count  --- 初始值</span><br><span class="line">   * @param {*} action --- { type, payload }</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  function countReducer(count, { type, payload }) {</span><br><span class="line">    switch (type) {</span><br><span class="line">      case "PLUS":</span><br><span class="line">        return count + payload;</span><br><span class="line">      case "MINUS":</span><br><span class="line">        return count - payload;</span><br><span class="line">      case "TIMES":</span><br><span class="line">        return count * payload;</span><br><span class="line">      case "DIVIDE":</span><br><span class="line">        return count / payload;</span><br><span class="line">      default:</span><br><span class="line">        return count;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   *  * count --- 状态</span><br><span class="line">   *  * dispatch --- 触发动作 --dispatch({ type,payload});</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  const [count, dispatch] = useReducer(countReducer, 0);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * dispatch 触发动作</span><br><span class="line">   * dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">   */</span><br><span class="line">  function plus() {</span><br><span class="line">    dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function minus() {</span><br><span class="line">    dispatch({ type: "MINUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function times() {</span><br><span class="line">    dispatch({ type: "TIMES", payload: 2 });</span><br><span class="line">  }</span><br><span class="line">  function divide() {</span><br><span class="line">    dispatch({ type: "DIVIDE", payload: 2 });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Count: {count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={plus}&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={minus}&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={times}&gt;x&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={divide}&gt;÷&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -560,150 +698,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2022/10/19/%20React%E4%B9%8Bhook%E7%AF%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/19/%20React%E4%B9%8Bhook%E7%AF%87/" class="post-title-link" itemprop="url">React之Hook篇</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-10-19 21:21:48" itemprop="dateCreated datePublished" datetime="2022-10-19T21:21:48+08:00">2022-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-11-08 23:31:54" itemprop="dateModified" datetime="2023-11-08T23:31:54+08:00">2023-11-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">前端框架</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>607</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>2 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
-<p>​		<code>data</code> = &gt; <code>state</code>（状态）</p>
-<p>React，其实是一个<code>view library </code>（view库—只关注视图）</p>
-<p>​				<code>view </code>=&gt; <code>update</code> =&gt; 视图的具体状态</p>
-<p>​				<code>state</code> &lt;=&gt; <code>view</code></p>
-<p>​				state和视图是相关联的。</p>
-<p>视图是某一个状态发生了变化，所以视图要进行相应的更新。</p>
-<p><code>useState()</code>=&gt; <code>state setState</code></p>
-<p>这个可以解释为，视图需要<code>state</code>状态。通过<code>useState()</code>创建了一个状态和设置状态的方法。 </p>
-<h3 id="react设计理念"><a href="#react设计理念" class="headerlink" title="react设计理念"></a>react设计理念</h3><ul>
-<li><p>react设计理念：一切操作函数化。</p>
-</li>
-<li><p>在react中，贯彻js—–“函数是一等公民”的理念。</p>
-</li>
-<li><p>react提供的东西都是朴素的，简单的。</p>
-</li>
-<li><p>react大部分都是运行时；vue都是编译时的行为。</p>
-</li>
-</ul>
-<h3 id="使用姿势"><a href="#使用姿势" class="headerlink" title="使用姿势"></a>使用姿势</h3><p>根据状态变更，有以下俩种：</p>
-<ul>
-<li><code>setXxx(xxx)</code> <em>简单情况</em></li>
-<li><code>setXxx((x)=&gt;{ return 表达式})</code> <em>复杂情况</em></li>
-</ul>
-<ol>
-<li><p>常用写法一：<code>setXxx(xxx)</code></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+			 &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 变式</span><br><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount(count + 1);</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p><code>setXxx((x)=&gt;{ return 表达式})</code></p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 1;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount((count) =&gt; {</span><br><span class="line">      return count * 2;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;X&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><h3 id="这个hook存在的价值"><a href="#这个hook存在的价值" class="headerlink" title="这个hook存在的价值"></a>这个hook存在的价值</h3><p>当存在逻辑分支如：<code>+ — * /</code> =&gt; 都是为了计算<code>count</code>,也就是<code>count</code>=&gt;多种操作方案，每一种方案可能有很多地方都需要使用。</p>
-<p><code>useReducer</code> =&gt; 会收集所有操作某一个数据的方案。</p>
-<h3 id="useReducer是什么"><a href="#useReducer是什么" class="headerlink" title="useReducer是什么"></a><code>useReducer</code>是什么</h3><p><code>useReducer(reducer,initialState)</code>接受俩个参数，第一个是<code>reducer</code>的函数，第二个是<code>initialState</code>初始值。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const [ count , dispatch ] = useReducer(reducer,0)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><code>dispatch</code>派发器 =&gt; 传入的不同操作类型 =&gt; 调用不同的逻辑</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">// usReducer</span><br><span class="line"></span><br><span class="line">export default function Hook() {</span><br><span class="line">  /**</span><br><span class="line">   *</span><br><span class="line">   * @param {*} count  --- 初始值</span><br><span class="line">   * @param {*} action --- { type, payload }</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  function countReducer(count, { type, payload }) {</span><br><span class="line">    switch (type) {</span><br><span class="line">      case "PLUS":</span><br><span class="line">        return count + payload;</span><br><span class="line">      case "MINUS":</span><br><span class="line">        return count - payload;</span><br><span class="line">      case "TIMES":</span><br><span class="line">        return count * payload;</span><br><span class="line">      case "DIVIDE":</span><br><span class="line">        return count / payload;</span><br><span class="line">      default:</span><br><span class="line">        return count;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   *  * count --- 状态</span><br><span class="line">   *  * dispatch --- 触发动作 --dispatch({ type,payload});</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  const [count, dispatch] = useReducer(countReducer, 0);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * dispatch 触发动作</span><br><span class="line">   * dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">   */</span><br><span class="line">  function plus() {</span><br><span class="line">    dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function minus() {</span><br><span class="line">    dispatch({ type: "MINUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function times() {</span><br><span class="line">    dispatch({ type: "TIMES", payload: 2 });</span><br><span class="line">  }</span><br><span class="line">  function divide() {</span><br><span class="line">    dispatch({ type: "DIVIDE", payload: 2 });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Count: {count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={plus}&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={minus}&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={times}&gt;x&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={divide}&gt;÷&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2>
       
     </div>
 

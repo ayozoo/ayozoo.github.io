@@ -3,7 +3,9 @@
   <entry>
     <title>React之Hook篇</title>
     <url>/2023/11/08/%20React%E4%B9%8Bhook%E7%AF%87/</url>
-    <content><![CDATA[<h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
+    <content><![CDATA[<h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><span id="more"></span>
+
+<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
 <p>​		<code>data</code> = &gt; <code>state</code>（状态）</p>
 <p>React，其实是一个<code>view library </code>（view库—只关注视图）</p>
 <p>​				<code>view </code>=&gt; <code>update</code> =&gt; 视图的具体状态</p>

@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ayozoo.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="React之Hook篇useState什么是state？在react中，数据不称为data，而称为state ​		data &#x3D; &gt; state（状态） React，其实是一个view library （view库—只关注视图） ​				view &#x3D;&gt; update &#x3D;&gt; 视图的具体状态 ​				state &lt;&#x3D;&gt; view ​				state和视图是相关联的。">
+    <meta name="description" content="React之Hook篇">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React之Hook篇">
 <meta property="og:url" content="https://ayozoo.github.io/2023/11/08/%20React%E4%B9%8Bhook%E7%AF%87/index.html">
 <meta property="og:site_name" content="ayozooZ">
-<meta property="og:description" content="React之Hook篇useState什么是state？在react中，数据不称为data，而称为state ​		data &#x3D; &gt; state（状态） React，其实是一个view library （view库—只关注视图） ​				view &#x3D;&gt; update &#x3D;&gt; 视图的具体状态 ​				state &lt;&#x3D;&gt; view ​				state和视图是相关联的。">
+<meta property="og:description" content="React之Hook篇">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-11-08T15:21:48.000Z">
-<meta property="article:modified_time" content="2023-11-08T15:34:34.784Z">
+<meta property="article:modified_time" content="2023-11-08T15:36:57.701Z">
 <meta property="article:author" content="ayozooZ">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
@@ -209,7 +209,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-11-08 23:21:48 / Modified: 23:34:34" itemprop="dateCreated datePublished" datetime="2023-11-08T23:21:48+08:00">2023-11-08</time>
+      <time title="Created: 2023-11-08 23:21:48 / Modified: 23:36:57" itemprop="dateCreated datePublished" datetime="2023-11-08T23:21:48+08:00">2023-11-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -228,7 +228,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">Word count in article: </span>
-      <span>607</span>
+      <span>608</span>
     </span>
     <span class="post-meta-item" title="Reading time">
       <span class="post-meta-item-icon">
@@ -245,7 +245,9 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
+    <div class="post-body" itemprop="articleBody"><h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><span id="more"></span>
+
+<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
 <p>​		<code>data</code> = &gt; <code>state</code>（状态）</p>
 <p>React，其实是一个<code>view library </code>（view库—只关注视图）</p>
 <p>​				<code>view </code>=&gt; <code>update</code> =&gt; 视图的具体状态</p>

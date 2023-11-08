@@ -19,23 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"ayozoo.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="ayozooZ">
-<meta property="og:url" content="https://ayozoo.github.io/index.html">
+    <meta name="description" content="React之Hook篇useState什么是state？在react中，数据不称为data，而称为state ​		data &#x3D; &gt; state（状态） React，其实是一个view library （view库—只关注视图） ​				view &#x3D;&gt; update &#x3D;&gt; 视图的具体状态 ​				state &lt;&#x3D;&gt; view ​				state和视图是相关联的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React之Hook篇">
+<meta property="og:url" content="https://ayozoo.github.io/2022/10/19/%20React%E4%B9%8Bhook%E7%AF%87/index.html">
 <meta property="og:site_name" content="ayozooZ">
+<meta property="og:description" content="React之Hook篇useState什么是state？在react中，数据不称为data，而称为state ​		data &#x3D; &gt; state（状态） React，其实是一个view library （view库—只关注视图） ​				view &#x3D;&gt; update &#x3D;&gt; 视图的具体状态 ​				state &lt;&#x3D;&gt; view ​				state和视图是相关联的。">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-10-19T13:21:48.000Z">
+<meta property="article:modified_time" content="2023-11-08T15:31:54.250Z">
 <meta property="article:author" content="ayozooZ">
+<meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://ayozoo.github.io/">
+<link rel="canonical" href="https://ayozoo.github.io/2022/10/19/%20React%E4%B9%8Bhook%E7%AF%87/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh","comments":true,"permalink":"https://ayozoo.github.io/2022/10/19/%20React%E4%B9%8Bhook%E7%AF%87/","path":"2022/10/19/ React之hook篇/","title":"React之Hook篇"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ayozooZ</title>
+<title>React之Hook篇 | ayozooZ</title>
   
 
 
@@ -71,7 +76,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">ayozooZ</h1>
+      <p class="site-title">ayozooZ</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">ayozooZ的blog</p>
@@ -98,7 +103,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -111,6 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React%E4%B9%8BHook%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">React之Hook篇</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#useState"><span class="nav-number">1.1.</span> <span class="nav-text">useState</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFstate%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是state？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5"><span class="nav-number">1.1.2.</span> <span class="nav-text">react设计理念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A7%BF%E5%8A%BF"><span class="nav-number">1.1.3.</span> <span class="nav-text">使用姿势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useReducer"><span class="nav-number">1.2.</span> <span class="nav-text">useReducer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E4%B8%AAhook%E5%AD%98%E5%9C%A8%E7%9A%84%E4%BB%B7%E5%80%BC"><span class="nav-number">1.2.1.</span> <span class="nav-text">这个hook存在的价值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useReducer%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.2.2.</span> <span class="nav-text">useReducer是什么</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#useEffect"><span class="nav-number">1.3.</span> <span class="nav-text">useEffect</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -162,429 +168,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/" class="post-title-link" itemprop="url">React入门之添加交互</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-11-02 23:21:22" itemprop="dateCreated datePublished" datetime="2023-11-02T23:21:22+08:00">2023-11-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-11-08 23:31:43" itemprop="dateModified" datetime="2023-11-08T23:31:43+08:00">2023-11-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">前端框架</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>13k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>45 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <hr>
-<h1 id="React入门之添加交互"><a href="#React入门之添加交互" class="headerlink" title="React入门之添加交互"></a>React入门之添加交互</h1><p>界面上的控件对随着用户的输入而更新。例如点击按钮切换轮播图的展示。在React中，随着时间变化的数据称为<strong>状态（state）</strong>。可以向任何组件添加状态，<strong>按需去进行更新</strong>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/10/31/%20React-%E6%8F%8F%E8%BF%B0UI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/10/31/%20React-%E6%8F%8F%E8%BF%B0UI/" class="post-title-link" itemprop="url">React入门之描述UI</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-10-31 23:50:22" itemprop="dateCreated datePublished" datetime="2023-10-31T23:50:22+08:00">2023-10-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-11-08 23:30:05" itemprop="dateModified" datetime="2023-11-08T23:30:05+08:00">2023-11-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">前端框架</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>19k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>1:04</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <hr>
-<h1 id="React"><a href="#React" class="headerlink" title="React"></a>React</h1><p>React应用就是被组件的独立UI片段构建，React组件本质就是可以添加任意标签的JavaScript函数。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/10/31/%20React-%E6%8F%8F%E8%BF%B0UI/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2023/08/27/%20websocket/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/27/%20websocket/" class="post-title-link" itemprop="url">http vs websocket</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2023-08-27 21:22:45" itemprop="dateCreated datePublished" datetime="2023-08-27T21:22:45+08:00">2023-08-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-09-26 23:17:06" itemprop="dateModified" datetime="2023-09-26T23:17:06+08:00">2023-09-26</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>6 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h1><pre><code>串行通信中，数据通常是在俩个终端之间进行传送，根据数据流的传输方向分为以下三种基本传送方式：单工、半双工和全双工。
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/08/27/%20websocket/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2022/10/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/" class="post-title-link" itemprop="url">webpack、vite的自动导包的"爱恨情仇"</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-10-19 21:21:48" itemprop="dateCreated datePublished" datetime="2022-10-19T21:21:48+08:00">2022-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-09-26 23:14:58" itemprop="dateModified" datetime="2023-09-26T23:14:58+08:00">2023-09-26</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>1.6k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>5 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="webpack、vite的自动导包的”爱恨情仇”"><a href="#webpack、vite的自动导包的”爱恨情仇”" class="headerlink" title="webpack、vite的自动导包的”爱恨情仇”"></a>webpack、vite的自动导包的”爱恨情仇”</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在开发Vue3+Vite的统一基座工程，遇到了模块自动导入的不同构建工具的引入方式，特此记录。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/10/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh">
     <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2022/10/19/%20React%E4%B9%8Bhook%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -598,13 +192,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
+      <meta itemprop="name" content="React之Hook篇 | ayozooZ">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/19/%20React%E4%B9%8Bhook%E7%AF%87/" class="post-title-link" itemprop="url">React之Hook篇</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          React之Hook篇
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -657,8 +251,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
+    <div class="post-body" itemprop="articleBody"><h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
 <p>​		<code>data</code> = &gt; <code>state</code>（状态）</p>
 <p>React，其实是一个<code>view library </code>（view库—只关注视图）</p>
 <p>​				<code>view </code>=&gt; <code>update</code> =&gt; 视图的具体状态</p>
@@ -704,7 +297,6 @@
 
 
 <h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2>
-      
     </div>
 
     
@@ -712,109 +304,28 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"># react</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://ayozoo.github.io/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="ayozooZ">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ayozooZ">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/" class="post-title-link" itemprop="url">vue3+vite环境变量踩雷</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-07-18 20:12:44" itemprop="dateCreated datePublished" datetime="2022-07-18T20:12:44+08:00">2022-07-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-09-26 23:14:44" itemprop="dateModified" datetime="2023-09-26T23:14:44+08:00">2023-09-26</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="Word count in article">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">Word count in article: </span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="Reading time">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">Reading time &asymp;</span>
-      <span>4 mins.</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="vue3-vite-环境变量踩坑"><a href="#vue3-vite-环境变量踩坑" class="headerlink" title="vue3 + vite 环境变量踩坑"></a>vue3 + vite 环境变量踩坑</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在<em><strong>env</strong></em>的俩个配置环境变量的配置文件。…</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/" rel="prev" title="vue3+vite环境变量踩雷">
+                  <i class="fa fa-chevron-left"></i> vue3+vite环境变量踩雷
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/10/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/" rel="next" title="webpack、vite的自动导包的"爱恨情仇"">
+                  webpack、vite的自动导包的"爱恨情仇" <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
+
 
 
 

@@ -1,64 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>React之Hook篇</title>
-    <url>/2023/11/08/%20React%E4%B9%8Bhook%E7%AF%87/</url>
-    <content><![CDATA[<h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><span id="more"></span>
-
-<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
-<p>​		<code>data</code> = &gt; <code>state</code>（状态）</p>
-<p>React，其实是一个<code>view library </code>（view库—只关注视图）</p>
-<p>​				<code>view </code>=&gt; <code>update</code> =&gt; 视图的具体状态</p>
-<p>​				<code>state</code> &lt;=&gt; <code>view</code></p>
-<p>​				state和视图是相关联的。</p>
-<p>视图是某一个状态发生了变化，所以视图要进行相应的更新。</p>
-<p><code>useState()</code>=&gt; <code>state setState</code></p>
-<p>这个可以解释为，视图需要<code>state</code>状态。通过<code>useState()</code>创建了一个状态和设置状态的方法。 </p>
-<h3 id="react设计理念"><a href="#react设计理念" class="headerlink" title="react设计理念"></a>react设计理念</h3><ul>
-<li><p>react设计理念：一切操作函数化。</p>
-</li>
-<li><p>在react中，贯彻js—–“函数是一等公民”的理念。</p>
-</li>
-<li><p>react提供的东西都是朴素的，简单的。</p>
-</li>
-<li><p>react大部分都是运行时；vue都是编译时的行为。</p>
-</li>
-</ul>
-<h3 id="使用姿势"><a href="#使用姿势" class="headerlink" title="使用姿势"></a>使用姿势</h3><p>根据状态变更，有以下俩种：</p>
-<ul>
-<li><code>setXxx(xxx)</code> <em>简单情况</em></li>
-<li><code>setXxx((x)=&gt;{ return 表达式})</code> <em>复杂情况</em></li>
-</ul>
-<ol>
-<li><p>常用写法一：<code>setXxx(xxx)</code></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+			 &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 变式</span><br><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount(count + 1);</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p><code>setXxx((x)=&gt;{ return 表达式})</code></p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 1;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount((count) =&gt; {</span><br><span class="line">      return count * 2;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;X&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><h3 id="这个hook存在的价值"><a href="#这个hook存在的价值" class="headerlink" title="这个hook存在的价值"></a>这个hook存在的价值</h3><p>当存在逻辑分支如：<code>+ — * /</code> =&gt; 都是为了计算<code>count</code>,也就是<code>count</code>=&gt;多种操作方案，每一种方案可能有很多地方都需要使用。</p>
-<p><code>useReducer</code> =&gt; 会收集所有操作某一个数据的方案。</p>
-<h3 id="useReducer是什么"><a href="#useReducer是什么" class="headerlink" title="useReducer是什么"></a><code>useReducer</code>是什么</h3><p><code>useReducer(reducer,initialState)</code>接受俩个参数，第一个是<code>reducer</code>的函数，第二个是<code>initialState</code>初始值。</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">const [ count , dispatch ] = useReducer(reducer,0)</span><br></pre></td></tr></tbody></table></figure>
-
-<p><code>dispatch</code>派发器 =&gt; 传入的不同操作类型 =&gt; 调用不同的逻辑</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">// usReducer</span><br><span class="line"></span><br><span class="line">export default function Hook() {</span><br><span class="line">  /**</span><br><span class="line">   *</span><br><span class="line">   * @param {*} count  --- 初始值</span><br><span class="line">   * @param {*} action --- { type, payload }</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  function countReducer(count, { type, payload }) {</span><br><span class="line">    switch (type) {</span><br><span class="line">      case "PLUS":</span><br><span class="line">        return count + payload;</span><br><span class="line">      case "MINUS":</span><br><span class="line">        return count - payload;</span><br><span class="line">      case "TIMES":</span><br><span class="line">        return count * payload;</span><br><span class="line">      case "DIVIDE":</span><br><span class="line">        return count / payload;</span><br><span class="line">      default:</span><br><span class="line">        return count;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   *  * count --- 状态</span><br><span class="line">   *  * dispatch --- 触发动作 --dispatch({ type,payload});</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  const [count, dispatch] = useReducer(countReducer, 0);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * dispatch 触发动作</span><br><span class="line">   * dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">   */</span><br><span class="line">  function plus() {</span><br><span class="line">    dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function minus() {</span><br><span class="line">    dispatch({ type: "MINUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function times() {</span><br><span class="line">    dispatch({ type: "TIMES", payload: 2 });</span><br><span class="line">  }</span><br><span class="line">  function divide() {</span><br><span class="line">    dispatch({ type: "DIVIDE", payload: 2 });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Count: {count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={plus}&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={minus}&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={times}&gt;x&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={divide}&gt;÷&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2>]]></content>
-      <categories>
-        <category>前端框架</category>
-      </categories>
-      <tags>
-        <tag>react</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>React入门之添加交互</title>
     <url>/2023/11/02/%20React-%E6%B7%BB%E5%8A%A0%E4%BA%A4%E4%BA%92/</url>
     <content><![CDATA[<hr>
@@ -679,6 +621,272 @@
       <tags>
         <tag>react</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>React之Hook篇</title>
+    <url>/2023/11/08/%20React%E4%B9%8Bhook%E7%AF%87/</url>
+    <content><![CDATA[<h1 id="React之Hook篇"><a href="#React之Hook篇" class="headerlink" title="React之Hook篇"></a>React之Hook篇</h1><span id="more"></span>
+
+<h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><h3 id="什么是state？"><a href="#什么是state？" class="headerlink" title="什么是state？"></a>什么是state？</h3><p>在react中，数据不称为<code>data</code>，而称为<code>state</code></p>
+<p>​		<code>data</code> = &gt; <code>state</code>（状态）</p>
+<p>React，其实是一个<code>view library </code>（view库—只关注视图）</p>
+<p>​				<code>view </code>=&gt; <code>update</code> =&gt; 视图的具体状态</p>
+<p>​				<code>state</code> &lt;=&gt; <code>view</code></p>
+<p>​				state和视图是相关联的。</p>
+<p>视图是某一个状态发生了变化，所以视图要进行相应的更新。</p>
+<p><code>useState()</code>=&gt; <code>state setState</code></p>
+<p>这个可以解释为，视图需要<code>state</code>状态。通过<code>useState()</code>创建了一个状态和设置状态的方法。 </p>
+<h3 id="react设计理念"><a href="#react设计理念" class="headerlink" title="react设计理念"></a>react设计理念</h3><ul>
+<li><p>react设计理念：一切操作函数化。</p>
+</li>
+<li><p>在react中，贯彻js—–“函数是一等公民”的理念。</p>
+</li>
+<li><p>react提供的东西都是朴素的，简单的。</p>
+</li>
+<li><p>react大部分都是运行时；vue都是编译时的行为。</p>
+</li>
+</ul>
+<h3 id="使用姿势"><a href="#使用姿势" class="headerlink" title="使用姿势"></a>使用姿势</h3><p>根据状态变更，有以下俩种：</p>
+<ul>
+<li><code>setXxx(xxx)</code> <em>简单情况</em></li>
+<li><code>setXxx((x)=&gt;{ return 表达式})</code> <em>复杂情况</em></li>
+</ul>
+<ol>
+<li><p>常用写法一：<code>setXxx(xxx)</code></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+			 &lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">// 变式</span><br><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 0;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount(count + 1);</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><code>setXxx((x)=&gt;{ return 表达式})</code></p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">import { useState } from "react";</span><br><span class="line"></span><br><span class="line">let initialState = 1;</span><br><span class="line">export default function useStateHook() {</span><br><span class="line">  const [count, setCount] = useState(initialState);</span><br><span class="line"></span><br><span class="line">  function handleClick() {</span><br><span class="line">    return setCount((count) =&gt; {</span><br><span class="line">      return count * 2;</span><br><span class="line">    });</span><br><span class="line">  }</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;{count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={handleClick}&gt;X&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><h3 id="这个hook存在的价值"><a href="#这个hook存在的价值" class="headerlink" title="这个hook存在的价值"></a>这个hook存在的价值</h3><p>当存在逻辑分支如：<code>+ — * /</code> =&gt; 都是为了计算<code>count</code>,也就是<code>count</code>=&gt;多种操作方案，每一种方案可能有很多地方都需要使用。</p>
+<p><code>useReducer</code> =&gt; 会收集所有操作某一个数据的方案。</p>
+<h3 id="useReducer是什么"><a href="#useReducer是什么" class="headerlink" title="useReducer是什么"></a><code>useReducer</code>是什么</h3><p><code>useReducer(reducer,initialState)</code>接受俩个参数，第一个是<code>reducer</code>的函数，第二个是<code>initialState</code>初始值。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">const [ count , dispatch ] = useReducer(reducer,0)</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>dispatch</code>派发器 =&gt; 传入的不同操作类型 =&gt; 调用不同的逻辑</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">// usReducer</span><br><span class="line"></span><br><span class="line">export default function Hook() {</span><br><span class="line">  /**</span><br><span class="line">   *</span><br><span class="line">   * @param {*} count  --- 初始值</span><br><span class="line">   * @param {*} action --- { type, payload }</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  function countReducer(count, { type, payload }) {</span><br><span class="line">    switch (type) {</span><br><span class="line">      case "PLUS":</span><br><span class="line">        return count + payload;</span><br><span class="line">      case "MINUS":</span><br><span class="line">        return count - payload;</span><br><span class="line">      case "TIMES":</span><br><span class="line">        return count * payload;</span><br><span class="line">      case "DIVIDE":</span><br><span class="line">        return count / payload;</span><br><span class="line">      default:</span><br><span class="line">        return count;</span><br><span class="line">    }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   *  * count --- 状态</span><br><span class="line">   *  * dispatch --- 触发动作 --dispatch({ type,payload});</span><br><span class="line">   *  * type --- 动作类型</span><br><span class="line">   *  * payload --- 动作携带的数据</span><br><span class="line">   * @returns</span><br><span class="line">   */</span><br><span class="line">  const [count, dispatch] = useReducer(countReducer, 0);</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * dispatch 触发动作</span><br><span class="line">   * dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">   */</span><br><span class="line">  function plus() {</span><br><span class="line">    dispatch({ type: "PLUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function minus() {</span><br><span class="line">    dispatch({ type: "MINUS", payload: 1 });</span><br><span class="line">  }</span><br><span class="line">  function times() {</span><br><span class="line">    dispatch({ type: "TIMES", payload: 2 });</span><br><span class="line">  }</span><br><span class="line">  function divide() {</span><br><span class="line">    dispatch({ type: "DIVIDE", payload: 2 });</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;Count: {count}&lt;/h1&gt;</span><br><span class="line">      &lt;button onClick={plus}&gt;+&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={minus}&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={times}&gt;x&lt;/button&gt;</span><br><span class="line">      &lt;button onClick={divide}&gt;÷&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2>]]></content>
+      <categories>
+        <category>前端框架</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue3+vite环境变量踩雷</title>
+    <url>/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/</url>
+    <content><![CDATA[<h1 id="vue3-vite-环境变量踩坑"><a href="#vue3-vite-环境变量踩坑" class="headerlink" title="vue3 + vite 环境变量踩坑"></a>vue3 + vite 环境变量踩坑</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在<em><strong>env</strong></em>的俩个配置环境变量的配置文件。…</p>
+<span id="more"></span>
+
+<p>例如以下生产环境、开发环境的环境变量文件：</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//.env.development 生产环境变量文件</span></span><br><span class="line"># 开发环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/dev-api'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// .env.production</span></span><br><span class="line"># 生产环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"># 生产环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/web-api'</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后在package.json中配置对应环境启动命令用以启动不同环境</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line">   <span class="string">"dev"</span>: <span class="string">"vue-cli-service --mode development"</span>,</span><br><span class="line">   <span class="string">"build"</span>: <span class="string">"vue-cli-service build --mode production"</span>,</span><br><span class="line"> },</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h2 id="什么是环境变量？"><a href="#什么是环境变量？" class="headerlink" title="什么是环境变量？"></a>什么是环境变量？</h2><p>根据代码运行环境变化而变化的变量就是所谓的环境变量。</p>
+<p>在生产环境和开发环境中最多用以区分接口公共<em><strong>BASE_URL_API</strong></em>路径来请求不同接口。</p>
+<p>环境变量一般在全局可以访问得到。在vue项目中，常见的环境变量访问方式是以下方式进行获取的：</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">mode</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">'production'</span> ? <span class="string">'production'</span> : <span class="string">'development'</span></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中的<u><em><strong>process.env.NODE_ENV</strong></em></u>就是环境变量，他是Node.js提供的API，用以返回获取当前<u><strong>Shall</strong></u>(操作系统和运行环境)所有的环境变量。</p>
+<h2 id="vue2-webPack-与-vue3-vite项目搭建获取环境变量的区别："><a href="#vue2-webPack-与-vue3-vite项目搭建获取环境变量的区别：" class="headerlink" title="vue2+webPack 与 vue3+vite项目搭建获取环境变量的区别："></a>vue2+webPack 与 vue3+vite项目搭建获取环境变量的区别：</h2><h3 id="webpack、vite相似之处"><a href="#webpack、vite相似之处" class="headerlink" title="webpack、vite相似之处"></a>webpack、vite相似之处</h3><p>配置都是按照前言所述，创建对应的环境变量的<u><em><strong>env</strong></em></u>文件，配置<u><em><strong>package.json</strong></em></u>文件中对应环境的启动命令。</p>
+<h3 id="webpack中的环境变量"><a href="#webpack中的环境变量" class="headerlink" title="webpack中的环境变量"></a>webpack中的环境变量</h3><p>在vue2项目中，webpack做了处理，使得浏览器可以直接识别获取到node环境的process.env变量。</p>
+<ul>
+<li><p>创建方式：配置在项目中env环境变量配置文件中，webpack环境变量可随意命名</p>
+</li>
+<li><p>获取方式：可以通过***<u>process.env*</u>**获取</p>
+</li>
+</ul>
+<p>所以在页面中可以获取相应的环境变量：</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//这里就是获取启动或者打包的命令获取对应的配置文件中的变量 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'当前环境是:'</span>,process.<span class="property">env</span>.<span class="property">NODE_ENV</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="vite中的环境变量"><a href="#vite中的环境变量" class="headerlink" title="vite中的环境变量"></a>vite中的环境变量</h3><ul>
+<li><p>创建方式：vite中环境创建存在俩种，都是在项目中env环境变量配置文件中配置：</p>
+<ol>
+<li><p>创建以<u><strong>VITE_</strong></u>开头的环境变量</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"># 开发环境配置</span><br><span class="line"><span class="variable constant_">NODE_ENV</span> =<span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line"><span class="variable constant_">VITE_APP_BASE_API</span> = <span class="string">'/dev-api'</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VITE_APP_URL</span> = <span class="string">"http://193.1.1.107:8042"</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VITE_APP_BASE_PORT</span> = <span class="string">"80"</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>更换<u><strong>VITE_</strong></u>前缀</p>
+<p>以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中。参考官网：</p>
+<p>[共享配置]: <a href="https://vitejs.cn/vite3-cn/config/shared-options.html#envdir">https://vitejs.cn/vite3-cn/config/shared-options.html#envdir</a>	“VIte官方文档”</p>
+<p>以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中。</p>
+<ul>
+<li><p><strong>类型：</strong> string | string[]</p>
+</li>
+<li><p><strong>默认：</strong> VITE_</p>
+</li>
+<li><p><strong>安全注意事项</strong></p>
+<p><strong>envPrefix</strong> 不应被设置为空字符串 <strong>‘ ‘</strong> ，这将暴露你所有的环境变量，导致敏感信息的意外泄漏。 检测到配置为 <strong>‘ ‘</strong> 时 Vite 将会抛出错误.</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>获取方式：</p>
+<p>Vite是在 <strong>import.meta.env</strong>对象上暴露当前Shall的环境变量。</p>
+<p>以下是获取对象中常用的内在变量：</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 应用运行的模式。</span></span><br><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">MODE</span>: {string} </span><br><span class="line"><span class="comment">// 部署应用时的基本 URL。他由base配置项决定。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">BASE_URL</span>: {string} </span><br><span class="line"><span class="comment">//  应用是否运行在生产环境。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">PROD</span>: {boolean}</span><br><span class="line"><span class="comment">// 应用是否运行在开发环境 (永远与 import.meta.env.PROD相反)。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">DEV</span>: {boolean} </span><br><span class="line"><span class="comment">// 应用是否运行在 </span></span><br><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">SSR</span>: {boolean} server 上。</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意：以上的变量存在于运行环境中，对应的vite.config中获取不到。</p>
+<p>在 Vite 的配置文件 vite.config.js 中，默认是不加载 .env 文件中的环境变量的。因为正常情况下，只有在评估完 Vite 配置之后，才知道哪些文件需要被加载，比如之前我们提到的<code>root</code>和<code>envDir</code>都会影响到加载的行为。不管如何，如果想要在配置中加载环境变量，可以使用 <code>loadEnv</code> 去加载环境变量。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> { defineConfig, loadEnv } <span class="keyword">from</span> <span class="string">"vite"</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">"@vitejs/plugin-vue"</span>;</span><br><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">"path"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">{ mode }</span>) =&gt;</span> {</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">""</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(env.<span class="property">VITE_APP_BASE_API</span>);</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">resolve</span> = (<span class="params">dir</span>) =&gt; path.<span class="title function_">resolve</span>(__dirname, dir);</span><br><span class="line">  <span class="keyword">return</span> {</span><br><span class="line">    <span class="attr">base</span>: <span class="string">"./"</span>,</span><br><span class="line">    <span class="attr">publicPath</span>: <span class="title function_">resolve</span>(<span class="string">"./static"</span>),</span><br><span class="line">    <span class="attr">assetsPublicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">".js"</span>, <span class="string">".ts"</span>, <span class="string">".jsx"</span>, <span class="string">".tsx"</span>, <span class="string">".json"</span>, <span class="string">".vue"</span>],</span><br><span class="line">    <span class="attr">resolve</span>: {</span><br><span class="line">      <span class="attr">alias</span>: {</span><br><span class="line">        <span class="string">"@"</span>: <span class="title function_">resolve</span>(<span class="string">"src"</span>),</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">    <span class="comment">// 本地运行配置，及反向代理配置</span></span><br><span class="line">    <span class="attr">server</span>: {</span><br><span class="line">      <span class="attr">host</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">port</span>: <span class="number">80</span>,</span><br><span class="line">      <span class="attr">open</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">strictPort</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">https</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">cors</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">proxy</span>: {</span><br><span class="line">        <span class="comment">// 代理规则直接放在 server 对象下，而非嵌套的 server 对象中</span></span><br><span class="line">        [env.<span class="property">VITE_APP_BASE_API</span>]: {</span><br><span class="line">          <span class="attr">target</span>: <span class="string">"http://172.1.1.210:8080"</span>,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">rewrite</span>: <span class="function">(<span class="params">path</span>) =&gt;</span> path.<span class="title function_">replace</span>(<span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">"^"</span> + env.<span class="property">VITE_APP_BASE_API</span>), <span class="string">"/web-api"</span>), <span class="comment">// 替换 /dev-api 为 target 接口地址</span></span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  </span><br><span class="line">  };</span><br><span class="line">});</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>注意，mode必须解构后传入loadEnv mode变量中</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>前端构建工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webpack、vite的自动导包的&quot;爱恨情仇&quot;</title>
+    <url>/2022/10/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
+    <content><![CDATA[<h1 id="webpack、vite的自动导包的”爱恨情仇”"><a href="#webpack、vite的自动导包的”爱恨情仇”" class="headerlink" title="webpack、vite的自动导包的”爱恨情仇”"></a>webpack、vite的自动导包的”爱恨情仇”</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在开发Vue3+Vite的统一基座工程，遇到了模块自动导入的不同构建工具的引入方式，特此记录。</p>
+<span id="more"></span>
+
+
+<p>在项目中，为了避免频繁导入。大家都会在对应，例如项目使用Webpack 打包工具的。在其项目<em><strong>store</strong></em>文件下其中的index.js 文件中使用webpack提供的api<code>require.context</code>的方法实现自动导入。</p>
+<h2 id="ES-模块规范"><a href="#ES-模块规范" class="headerlink" title="ES 模块规范"></a>ES 模块规范</h2><p>在实现自动导入模块前，我们先了解下<code>ES 模块规范</code>。</p>
+<p>所谓的<code>ES模块规范</code>,即 JavaScript 的标准模块系统，它允许您使用 <code>import</code> 和 <code>export</code> 关键字来导入和导出模块。这是现代 JavaScript 中推荐使用的模块化方式。</p>
+<p>在<code>ES模块规范</code>中，提供了<code>import.meta.glob</code>功能。它允许在项目运行中动态匹配特定模式的模块。例如以下代码就可以动态匹配到<code>module</code>模块下的所有<code>js</code>文件。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="title function_">glob</span>(<span class="string">'./module/*.js'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="话不多说，上干货"><a href="#话不多说，上干货" class="headerlink" title="话不多说，上干货"></a>话不多说，上干货</h2><p>例如，你的项目<em><strong>sotre</strong></em>文件目录为</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">- store</span><br><span class="line">  - module</span><br><span class="line">    - module1.js</span><br><span class="line">    - module2.js</span><br><span class="line">    - ...</span><br><span class="line">    - moduleN.js</span><br><span class="line">  - main.js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中<code>module</code>下的<code>moduleX</code>文件你的<code>main.js</code>为你的<em><strong>sotre</strong></em>入口文件，</p>
+<h3 id="webpack中的自动导入的实现方式"><a href="#webpack中的自动导入的实现方式" class="headerlink" title="webpack中的自动导入的实现方式"></a>webpack中的自动导入的实现方式</h3><p>在<code>main.js</code>入口文件中你可以使用webpack提供<code>require.context</code>的方法实现<code>module</code>文件目录下的模块自动导入。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> files = <span class="built_in">require</span>.<span class="title function_">context</span>(<span class="string">'./model'</span>, <span class="literal">false</span>, <span class="regexp">/\.js$/</span>)</span><br><span class="line"><span class="keyword">const</span> modules = {}</span><br><span class="line">files.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> {</span><br><span class="line">	modules[key.<span class="title function_">replace</span>(<span class="regexp">/(\.\/|\.js)/g</span>, <span class="string">''</span>)] = <span class="title function_">files</span>(key).<span class="property">default</span></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> modules</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中<code>files.keys()</code>是<code>require.context</code>方法返回的一个函数，它会返回一个包含所有匹配模块路径的数组。</p>
+<p><code>require.context</code>是Webpack提供的一个方法，它允许你在构建时动态地导入模块。该方法接收三个参数：</p>
+<ol>
+<li><code>directory</code>: 表示要搜索的目录路径。</li>
+<li><code>useSubdirectories</code>: 表示是否搜索子目录。</li>
+<li><code>regExp</code>: 表示匹配文件的正则表达式。</li>
+</ol>
+<p>在上面代码中，<code>files</code>就是通过<code>require.context</code>动态导入了<code>./model</code>目录下所有的<code>.js</code>文件，并使用正则表达式<code>/\.js$/</code>来匹配文件。这样，<code>files.keys()</code>返回一个包含所有匹配模块路径的数组。例如控制台打印<code>files.keys()</code>可获得以下数组</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">"./module1.js"</span>,</span><br><span class="line">    <span class="string">"./module2.js"</span>,</span><br><span class="line">    <span class="string">"./。。。.js"</span>,</span><br><span class="line">    <span class="string">"./moduleN.js"</span></span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure>
+
+<p>接着，我们可以使用<code>.forEach()</code>遍历这个数组，对每个匹配的模块进行处理，提取模块名，并将模块添加到<code>modules</code>对象中。这样，你就得到了一个以模块名为键、模块对象为值的<code>modules</code>对象，它包含了所有从<code>./model</code>目录中动态导入的模块。</p>
+<h3 id="vite自动导入的实现方式"><a href="#vite自动导入的实现方式" class="headerlink" title="vite自动导入的实现方式"></a>vite自动导入的实现方式</h3><p>在<code>main.js</code>入口文件中你可以使用<code>ES模块规范</code>提供的<code>import.meta.glob</code>方法来获取特定模块的匹配模式，来实现自动导入。</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> modules = {};</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">importAllModules</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="keyword">const</span> files = <span class="keyword">import</span>.<span class="property">meta</span>.<span class="title function_">glob</span>(<span class="string">'./module/*.js'</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> path <span class="keyword">in</span> files) {</span><br><span class="line">    <span class="keyword">const</span> key = path.<span class="title function_">replace</span>(<span class="regexp">/\.\/module\/|\.js/g</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="variable language_">module</span> = <span class="keyword">await</span> files[path]();</span><br><span class="line">    modules[key] = <span class="variable language_">module</span>.<span class="property">default</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">importAllModules().<span class="title function_">then</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(modules); <span class="comment">// 所有模块已导入并组合成对象</span></span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在可以导出组合后的 modules 对象供其他地方使用</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> modules;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这种情况下，使用异步操作是因为模块导入是一个异步操作。<code>import.meta.glob()</code>方法会返回一个对象，该对象的键是匹配到的文件路径，值是一个函数，调用该函数将异步导入对应的模块。因此，我们需要使用异步操作来等待模块导入完成，然后再将其添加到<code>modules</code>对象中。</p>
+<p>如果我们不使用异步操作，而是直接将模块导入的结果添加到<code>module</code>对象中，那么由于模块导入是异步的，<code>modules</code>对象可能在模块导入完成之前被导出，导致<code>modules</code>对象不完整或为空。使用异步操作可以确保在所有模块导入完成后再导出<code>modules</code>对象，保证其包含所有模块导出的内容。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="为什么都是打包工具，会有不同的自动导入方式呢？"><a href="#为什么都是打包工具，会有不同的自动导入方式呢？" class="headerlink" title="为什么都是打包工具，会有不同的自动导入方式呢？"></a>为什么都是打包工具，会有不同的自动导入方式呢？</h3><p>在使用 Webpack 的情况下，与使用 Vite 或其他原生支持 ES 模块的项目相比，自动导入模块的实现会有一些区别。主要区别在于 Webpack 不支持 <code>import.meta.glob</code>，因为它是 ES 模块的一个特殊功能，而 Webpack 是一个打包工具，不完全符合 ES 模块的规范。</p>
+<h3 id="那这里就浅浅对比下俩种打包工具的差异吧"><a href="#那这里就浅浅对比下俩种打包工具的差异吧" class="headerlink" title="那这里就浅浅对比下俩种打包工具的差异吧"></a>那这里就浅浅对比下俩种打包工具的差异吧</h3><h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><ul>
+<li>成熟度高。Webpack是一个成熟且应用相当广泛的打包构建工具，具有强大的生态系统和社区支持。</li>
+<li>打包速度较慢。Webpack打包速度在大型项目打包速度比较慢，从入口文件开始，基于代码中的import、export、require构建依赖树，将所有的模块打包到一个或者几个少数文件中。因此，项目规模庞大的话，启动和热更新更慢。每次代码变更构建都需要生成新的Bundle文件。</li>
+<li>配置复杂。官网配置很多，需要处理不同的Loader和Plugin来管理不同的资源文件。</li>
+<li>插件系统丰富。Webpack具有强大的插件系统，允许开发者根据需求扩展定义。</li>
+<li>Tree Shaking。Webpack通过使用UglifyJS等工具进行Tree Shaking，消除未使用的代码</li>
+<li>热模块替换（HMR）。Webpack支持热模块替换，但在某些情况下需要手动配置。</li>
+</ul>
+<h4 id="Vite"><a href="#Vite" class="headerlink" title="Vite"></a>Vite</h4><ul>
+<li>新兴技术。Vite是一个相较新的构建工具，旨在提供更快的开发体验和构建速度。</li>
+<li>打包速度极快。Vite在开发环境下具有极快的启动和热更新速度，因为它采用了原生ES模块的方式，并且将依赖项保持为独立的文件，而不是打包到一个大文件中。</li>
+<li>配置简单。Vite的配置比Webpack简单，尤其是对于常见的项目结构，大部分任务都无需额外配置。</li>
+<li>热模块替换（HMR）。Vite对热模块替换的支持非常好，在开发过程中几乎不需要手动配置即可实现HMR。</li>
+<li>Tree Shaking。Vite使用Rollup进行Tree Shaking，这使得未使用的代码更容易被消除。</li>
+<li>插件系统还不够完善。Vite的插件系统仍在发展中，目前没有Webpack那么丰富的插件支持。</li>
+</ul>
+<p>总之，Webpack更加适合与大型、复杂项目的构建工作，拥有成熟和完善的生态系统和社区。Vite更适合用于一些热更新快速的程序。</p>
+]]></content>
+      <tags>
+        <tag>前端构建工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http vs websocket</title>
+    <url>/2023/08/27/%20websocket/</url>
+    <content><![CDATA[<h1 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h1><pre><code>串行通信中，数据通常是在俩个终端之间进行传送，根据数据流的传输方向分为以下三种基本传送方式：单工、半双工和全双工。
+</code></pre>
+<span id="more"></span>
+
+<h1 id="基本区别为："><a href="#基本区别为：" class="headerlink" title="基本区别为："></a>基本区别为：</h1><ul>
+<li><code>单工</code>：单工通信只有一根数据线，通信只在一个方向上进行，这种方式的应用实例有：监视器、打印机、电视机等。</li>
+<li><code>半双工</code>：半双工通信也只有一根数据线，它也单工的区别是这根数据线既可作发送又可作发接收，虽然数据可在两个方向上传送，但通信双方不能同时收发数据。<strong>http协议采用的就是这个通信方式</strong></li>
+<li><code>全双工</code>：　数据的发送和接收用两根不同的数据线，通信双方在同一时刻都能进行发送和接收，这一工作方式称为全双工通信。在这种方式下，通信双方都有发送器和接收器，发送和接收可同时进行，没有时间延迟。<strong>websocket采用的就是这个通信方式</strong></li>
+</ul>
+<h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><ul>
+<li>http协议主要关注的是  客户端——&gt;服务器（获取资源）</li>
+</ul>
+<p>特点：无状态协议；<br>     每个请求都是独立的；<br>     请求应答模式，服务器无法主动给客户端推送消息（单工，<em>半双工</em>，全双工）<br>     http受浏览器同源策略的影响</p>
+<h1 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h1><p>双向通信（全双工协议）每次不需要重新建立连接，可以一直相互通信</p>
+<h3 id="不使用websocket-以前的双向通信的实现方式"><a href="#不使用websocket-以前的双向通信的实现方式" class="headerlink" title="不使用websocket 以前的双向通信的实现方式"></a>不使用websocket 以前的双向通信的实现方式</h3><p>Comet，主要是为了是实现服务端可以像客户端桶送数据，为了继绝实时性比较高的情况。</p>
+<ul>
+<li>1.轮询（客户端定期向服务端发送请求采用方式，前端setInterval定时器发送请求）<br>轮询会在的问题：<ul>
+<li>轮询方式会存在<strong>竞速问题</strong>，无法保证请求的先后顺序，可能会存在多个请求返回的结果同时修改资源。</li>
+<li>频繁的网络请求 会导致服务器负荷增加 同时频繁的客户端发请求也会影响客户端性能问题</li>
+<li>http 发送的时候 会增加http报文（headers、鉴权、内容类型） 会出现额外的数据消耗</li>
+<li>实时性比较低 定时轮询前端定时轮询（定时器发请求）无法处理即时处理的请求<br>轮询的优点</li>
+<li>容易实现</li>
+<li>不适合实时性比较高的，低并发</li>
+</ul>
+<hr>
+</li>
+<li>2.长轮询（前端接口递归调用）<br>  想解决短轮询的缺点（想将实时性更强）<br>长轮询存在的问题<ul>
+<li>实时性强了，同时也造成了更多的网络请求</li>
+<li>链接堆积问题，链接需要在服务端中保持打开，占有服务器资源（前端需要大量数据从服务端访问，会一直从服务端获取）<br>优点</li>
+<li>实时性强了，但是要求服务端的并发能力要强</li>
+</ul>
+<hr>
+</li>
+<li>3.iframe流（使用ifream存在的沙箱模式）<br>存在的问题<ul>
+<li>单通信（服务端直接推送客户端消息）<br>优点</li>
+<li>具有实时性，且不需要客户端和服务端频繁发请求</li>
+</ul>
+<hr>
+</li>
+<li><h2 id="4-sse-EventSource（html提供的，单项通信，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）存在的问题-单项传输，客户端无法给服务端传递数据"><a href="#4-sse-EventSource（html提供的，单项通信，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）存在的问题-单项传输，客户端无法给服务端传递数据" class="headerlink" title="4.sse EventSource（html提供的，单项通信，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）存在的问题- 单项传输，客户端无法给服务端传递数据"></a>4.sse EventSource（html提供的，<em>单项通信</em>，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）<br><figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 服务端代码</span></span><br><span class="line">    app.<span class="title function_">get</span>(<span class="string">'/clock'</span>,<span class="keyword">function</span>(<span class="params">res,req</span>){</span><br><span class="line">        <span class="comment">// 这里表明服务器传递的是时间流</span></span><br><span class="line">        res.<span class="title function_">setHeader</span>(<span class="string">'Content-Type'</span>,<span class="string">'text/event-stream'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>{</span><br><span class="line">            <span class="comment">// 和http协议一样，按照行的方式传输</span></span><br><span class="line">            <span class="comment">// Content-Type:xxx</span></span><br><span class="line">            <span class="comment">// Authorization:xxx</span></span><br><span class="line">            res.<span class="title function_">write</span>(<span class="string">`data:hello\n\n`</span>)</span><br><span class="line">        },<span class="number">1000</span>)</span><br><span class="line">    })</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 客户端代码   script中</span></span><br><span class="line"><span class="keyword">const</span> eventsource = <span class="keyword">new</span> <span class="title class_">EventSource</span>(<span class="string">'xxx接口地址'</span>)</span><br><span class="line"></span><br><span class="line">eventsource.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params"></span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'Connection opened'</span>);</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line">eventsource.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">e</span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">data</span>)</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure><br>存在的问题<br>- 单项传输，客户端无法给服务端传递数据</h2></li>
+<li>5.webSocket（h5提供的api）<br>优点<ul>
+<li><p>双向通信</p>
+</li>
+<li><p>持久连接</p>
+</li>
+<li><p>发送的消息增加帧是非常小的</p>
+</li>
+<li><p>支持多种数据格式</p>
+</li>
+<li><p>天生支持跨域</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">Websocket</span>(<span class="string">'ws://loacalhost:3000'</span>)</span><br><span class="line"></span><br><span class="line">ws.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params"></span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'Content opened'</span>)</span><br><span class="line"></span><br><span class="line">    ws.<span class="title function_">send</span>(<span class="string">'hello Serve'</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">ws.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">e</span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'服务器响应数据：'</span>+ e.<span class="property">data</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//  服务端代码</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">'http'</span><span class="comment">// webSocket首先基于http协议</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> { <span class="title class_">WebSocket</span> } <span class="keyword">from</span> <span class="string">'ws'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wsServer = <span class="keyword">new</span> <span class="title class_">WebSocket</span>({ server })</span><br><span class="line"></span><br><span class="line">wsServer.<span class="title function_">on</span>(<span class="string">'connection'</span>,<span class="function">(<span class="params">ws</span>)=&gt;</span>{</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'Connection opend'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  给客户端发送消息</span></span><br><span class="line">    ws.<span class="title function_">send</span>(<span class="string">'hellow client'</span>)</span><br><span class="line"></span><br><span class="line">    ws.<span class="title function_">on</span>(<span class="string">'message'</span>,<span class="function">(<span class="params">message</span>)=&gt;</span>{</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'客户端发送的数据：'</span> + message)</span><br><span class="line">    })</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p><em><strong>拓展:</strong></em><br> 协议的表示方式？</p>
+<p>以http为例子<br>就是要了解http各种header的使用<br>怎么实现握手的，数据长什么样子，怎么通信</p>
+<p>查看网络得知：<br>webSocket协议</p>
+</li>
+<li><p>请求行显示：请求方式 <em><strong>GET ws://localhost:3000</strong></em> 协议版本 <em><strong>HTTP/1.1</strong></em></p>
+</li>
+<li><p>Connection : Upgrade</p>
+</li>
+<li><p>Upgrade: websocket 升级的协议是什么</p>
+</li>
+<li><p>Sec-Websocket-Version: 13 协议的版本</p>
+</li>
+<li><p>生成<em>Sec-Websocket-Key</em>:用于生成唯一的，保证安全的websocket连接 防止恶意连接 可以用于握手</p>
+</li>
+<li><p>Sec-Websocket-Accept 是根据key算出来的 表示握手成功</p>
+<p>通过wireshark工具可以抓包，了解<br>会生成key-&gt;·GBUN9IA5TYXPYgQehlxEUw== 握手的时候创建一个随机的key<br>accept-&gt; TpUkC2LowejLbA6ZRgwSL8Rk4FI= 服务端要响应一个值</p>
+<p>每一次的key都不一样，采用以下方法创建安全的握手连接</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 加密库</span></span><br><span class="line"><span class="keyword">import</span> crypto <span class="keyword">from</span> <span class="string">'crypto'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> number = <span class="string">'258EAFA5-E914-47DA-95CA-C5ABODC85B11const'</span>; <span class="keyword">const</span> websocketKey =<span class="string">'GBIN9IA5TYXPYgQehlxEUw=='</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 采用hah算法生成更新生成摘要输出base64格式 响应给客户端</span></span><br><span class="line"><span class="keyword">const</span> websocketAccept = crypto.<span class="title function_">createHash</span>( <span class="string">'sha1'</span> ).<span class="title function_">update</span>(websocketKey + number).<span class="title function_">digest</span>( <span class="string">'base64'</span> )</span><br></pre></td></tr></tbody></table></figure>
+<p>完整的握手过程</p>
+<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 服务端代码</span></span><br><span class="line"><span class="keyword">import</span> net <span class="keyword">from</span> <span class="string">'net'</span><span class="comment">// 可以接受原始的消息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个人连接都会产生一个socket</span></span><br><span class="line"><span class="keyword">const</span> server = net.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">socket</span>){</span><br><span class="line">    <span class="comment">// 客户端发消息 先握手</span></span><br><span class="line">    socket.<span class="title function_">once</span>(<span class="string">'data'</span>,<span class="keyword">function</span>(<span class="params">data</span>){</span><br><span class="line">        <span class="comment">// 发送的报文 data</span></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * data包含</span></span><br><span class="line"><span class="comment">            GET / HTIP/1.1 *请求行*</span></span><br><span class="line"><span class="comment">            Host: localhost:3000</span></span><br><span class="line"><span class="comment">            Connection: UpgradePragma: no-cacheCache Control: no-cacheUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac 0S X 10 15 7) AppleWebKit/537.36 (KHTMLlike Gecko) Chrome/115.0.0.0 Safari/537.36Upgrade: websocket</span></span><br><span class="line"><span class="comment">            0rigin: http://127.0.0.1:5500</span></span><br><span class="line"><span class="comment">            Sec WebSocket-Version: 13</span></span><br><span class="line"><span class="comment">            Accept-Encoding: gzip,deflate,brAccept-Language: zh-CN, zh;g=0.9Sec-WebSocket-Key: LFD4X3DrVLhObMnKL0b5K0</span></span><br><span class="line"><span class="comment">            Sec-WebSocket-Extensions: permessage-deflate; client max window bits</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        data = data.<span class="title function_">toString</span>()</span><br><span class="line">        <span class="comment">//  说明要升级成websocket协议 再报文中读取是否已经是websocket协议</span></span><br><span class="line">        <span class="keyword">if</span>(data.<span class="title function_">match</span>(<span class="regexp">/Upgrade:websocket/</span>)){</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 在抓包工具中读取到 key用来解析 ***在报文中都是字符串存在的***</span></span><br><span class="line"><span class="comment">                    Host; localhost:3000\r\n</span></span><br><span class="line"><span class="comment">                    Connection: Upgrade rn</span></span><br><span class="line"><span class="comment">                    Pragma: no-cache rin</span></span><br><span class="line"><span class="comment">                    Cache Control: nocache\rin</span></span><br><span class="line"><span class="comment">                    User-Agent; Mozilla/5.0 (Macintosh; Intel Mac 05 X 10 15 7) AppleWebkit/537,36 (KHTML, like Gecko</span></span><br><span class="line"><span class="comment">                    Upgrade: websocket r\n</span></span><br><span class="line"><span class="comment">                    0rigin: http://127.0.0.1:5500\r\n</span></span><br><span class="line"><span class="comment">                    Sec-WebSocket-Version: 13r'nAccept-Encoding: gzip, deflate, bririnAccept-Language: zh-CN zh;a=0.9\r\n</span></span><br><span class="line"><span class="comment">                    Sec-WebSocket-Key:P2P2F9kEf/wg18RkzXM8eA==\rin</span></span><br><span class="line"><span class="comment">                    Sec-WebSocket-Extensions: permessage-deflate; client max window bits'rinrin</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">           <span class="keyword">let</span> rows =  data.<span class="title function_">split</span>(<span class="string">'\r\n'</span>)</span><br><span class="line">           <span class="variable language_">console</span>.<span class="title function_">log</span>(rows)</span><br><span class="line">           <span class="comment">/**</span></span><br><span class="line"><span class="comment">            * rows 打印得出</span></span><br><span class="line"><span class="comment">                    GETHTTP/1.1Host: localhost:3000'Connection: Uggrade'Pragma; no-cache'Cache-Control; no-cache'"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac 0S X 10 15 7) AppleWebKit/537.36 (KHTML，like Gecko) Chrome/115.0.0.0 Safari/537.36''Uparade: websocket'</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>,<span class="keyword">function</span>(<span class="params"></span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'server start port 3000'</span>)</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>React入门之描述UI</title>
@@ -1340,214 +1548,6 @@
       </categories>
       <tags>
         <tag>react</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>http vs websocket</title>
-    <url>/2023/08/27/%20websocket/</url>
-    <content><![CDATA[<h1 id="通信"><a href="#通信" class="headerlink" title="通信"></a>通信</h1><pre><code>串行通信中，数据通常是在俩个终端之间进行传送，根据数据流的传输方向分为以下三种基本传送方式：单工、半双工和全双工。
-</code></pre>
-<span id="more"></span>
-
-<h1 id="基本区别为："><a href="#基本区别为：" class="headerlink" title="基本区别为："></a>基本区别为：</h1><ul>
-<li><code>单工</code>：单工通信只有一根数据线，通信只在一个方向上进行，这种方式的应用实例有：监视器、打印机、电视机等。</li>
-<li><code>半双工</code>：半双工通信也只有一根数据线，它也单工的区别是这根数据线既可作发送又可作发接收，虽然数据可在两个方向上传送，但通信双方不能同时收发数据。<strong>http协议采用的就是这个通信方式</strong></li>
-<li><code>全双工</code>：　数据的发送和接收用两根不同的数据线，通信双方在同一时刻都能进行发送和接收，这一工作方式称为全双工通信。在这种方式下，通信双方都有发送器和接收器，发送和接收可同时进行，没有时间延迟。<strong>websocket采用的就是这个通信方式</strong></li>
-</ul>
-<h1 id="http"><a href="#http" class="headerlink" title="http"></a>http</h1><ul>
-<li>http协议主要关注的是  客户端——&gt;服务器（获取资源）</li>
-</ul>
-<p>特点：无状态协议；<br>     每个请求都是独立的；<br>     请求应答模式，服务器无法主动给客户端推送消息（单工，<em>半双工</em>，全双工）<br>     http受浏览器同源策略的影响</p>
-<h1 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h1><p>双向通信（全双工协议）每次不需要重新建立连接，可以一直相互通信</p>
-<h3 id="不使用websocket-以前的双向通信的实现方式"><a href="#不使用websocket-以前的双向通信的实现方式" class="headerlink" title="不使用websocket 以前的双向通信的实现方式"></a>不使用websocket 以前的双向通信的实现方式</h3><p>Comet，主要是为了是实现服务端可以像客户端桶送数据，为了继绝实时性比较高的情况。</p>
-<ul>
-<li>1.轮询（客户端定期向服务端发送请求采用方式，前端setInterval定时器发送请求）<br>轮询会在的问题：<ul>
-<li>轮询方式会存在<strong>竞速问题</strong>，无法保证请求的先后顺序，可能会存在多个请求返回的结果同时修改资源。</li>
-<li>频繁的网络请求 会导致服务器负荷增加 同时频繁的客户端发请求也会影响客户端性能问题</li>
-<li>http 发送的时候 会增加http报文（headers、鉴权、内容类型） 会出现额外的数据消耗</li>
-<li>实时性比较低 定时轮询前端定时轮询（定时器发请求）无法处理即时处理的请求<br>轮询的优点</li>
-<li>容易实现</li>
-<li>不适合实时性比较高的，低并发</li>
-</ul>
-<hr>
-</li>
-<li>2.长轮询（前端接口递归调用）<br>  想解决短轮询的缺点（想将实时性更强）<br>长轮询存在的问题<ul>
-<li>实时性强了，同时也造成了更多的网络请求</li>
-<li>链接堆积问题，链接需要在服务端中保持打开，占有服务器资源（前端需要大量数据从服务端访问，会一直从服务端获取）<br>优点</li>
-<li>实时性强了，但是要求服务端的并发能力要强</li>
-</ul>
-<hr>
-</li>
-<li>3.iframe流（使用ifream存在的沙箱模式）<br>存在的问题<ul>
-<li>单通信（服务端直接推送客户端消息）<br>优点</li>
-<li>具有实时性，且不需要客户端和服务端频繁发请求</li>
-</ul>
-<hr>
-</li>
-<li><h2 id="4-sse-EventSource（html提供的，单项通信，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）存在的问题-单项传输，客户端无法给服务端传递数据"><a href="#4-sse-EventSource（html提供的，单项通信，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）存在的问题-单项传输，客户端无法给服务端传递数据" class="headerlink" title="4.sse EventSource（html提供的，单项通信，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）存在的问题- 单项传输，客户端无法给服务端传递数据"></a>4.sse EventSource（html提供的，<em>单项通信</em>，客户端可以监控服务端推送的事件。只能推送文本消息，适合小数据）<br><figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 服务端代码</span></span><br><span class="line">    app.<span class="title function_">get</span>(<span class="string">'/clock'</span>,<span class="keyword">function</span>(<span class="params">res,req</span>){</span><br><span class="line">        <span class="comment">// 这里表明服务器传递的是时间流</span></span><br><span class="line">        res.<span class="title function_">setHeader</span>(<span class="string">'Content-Type'</span>,<span class="string">'text/event-stream'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>{</span><br><span class="line">            <span class="comment">// 和http协议一样，按照行的方式传输</span></span><br><span class="line">            <span class="comment">// Content-Type:xxx</span></span><br><span class="line">            <span class="comment">// Authorization:xxx</span></span><br><span class="line">            res.<span class="title function_">write</span>(<span class="string">`data:hello\n\n`</span>)</span><br><span class="line">        },<span class="number">1000</span>)</span><br><span class="line">    })</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 客户端代码   script中</span></span><br><span class="line"><span class="keyword">const</span> eventsource = <span class="keyword">new</span> <span class="title class_">EventSource</span>(<span class="string">'xxx接口地址'</span>)</span><br><span class="line"></span><br><span class="line">eventsource.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params"></span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'Connection opened'</span>);</span><br><span class="line">}</span><br><span class="line"><span class="comment">// 发送消息</span></span><br><span class="line">eventsource.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">e</span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">data</span>)</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure><br>存在的问题<br>- 单项传输，客户端无法给服务端传递数据</h2></li>
-<li>5.webSocket（h5提供的api）<br>优点<ul>
-<li><p>双向通信</p>
-</li>
-<li><p>持久连接</p>
-</li>
-<li><p>发送的消息增加帧是非常小的</p>
-</li>
-<li><p>支持多种数据格式</p>
-</li>
-<li><p>天生支持跨域</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 客户端代码</span></span><br><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">Websocket</span>(<span class="string">'ws://loacalhost:3000'</span>)</span><br><span class="line"></span><br><span class="line">ws.<span class="property">onopen</span> = <span class="keyword">function</span>(<span class="params"></span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'Content opened'</span>)</span><br><span class="line"></span><br><span class="line">    ws.<span class="title function_">send</span>(<span class="string">'hello Serve'</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">ws.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">e</span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'服务器响应数据：'</span>+ e.<span class="property">data</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//  服务端代码</span></span><br><span class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">'http'</span><span class="comment">// webSocket首先基于http协议</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> { <span class="title class_">WebSocket</span> } <span class="keyword">from</span> <span class="string">'ws'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wsServer = <span class="keyword">new</span> <span class="title class_">WebSocket</span>({ server })</span><br><span class="line"></span><br><span class="line">wsServer.<span class="title function_">on</span>(<span class="string">'connection'</span>,<span class="function">(<span class="params">ws</span>)=&gt;</span>{</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'Connection opend'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  给客户端发送消息</span></span><br><span class="line">    ws.<span class="title function_">send</span>(<span class="string">'hellow client'</span>)</span><br><span class="line"></span><br><span class="line">    ws.<span class="title function_">on</span>(<span class="string">'message'</span>,<span class="function">(<span class="params">message</span>)=&gt;</span>{</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'客户端发送的数据：'</span> + message)</span><br><span class="line">    })</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<p><em><strong>拓展:</strong></em><br> 协议的表示方式？</p>
-<p>以http为例子<br>就是要了解http各种header的使用<br>怎么实现握手的，数据长什么样子，怎么通信</p>
-<p>查看网络得知：<br>webSocket协议</p>
-</li>
-<li><p>请求行显示：请求方式 <em><strong>GET ws://localhost:3000</strong></em> 协议版本 <em><strong>HTTP/1.1</strong></em></p>
-</li>
-<li><p>Connection : Upgrade</p>
-</li>
-<li><p>Upgrade: websocket 升级的协议是什么</p>
-</li>
-<li><p>Sec-Websocket-Version: 13 协议的版本</p>
-</li>
-<li><p>生成<em>Sec-Websocket-Key</em>:用于生成唯一的，保证安全的websocket连接 防止恶意连接 可以用于握手</p>
-</li>
-<li><p>Sec-Websocket-Accept 是根据key算出来的 表示握手成功</p>
-<p>通过wireshark工具可以抓包，了解<br>会生成key-&gt;·GBUN9IA5TYXPYgQehlxEUw== 握手的时候创建一个随机的key<br>accept-&gt; TpUkC2LowejLbA6ZRgwSL8Rk4FI= 服务端要响应一个值</p>
-<p>每一次的key都不一样，采用以下方法创建安全的握手连接</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 加密库</span></span><br><span class="line"><span class="keyword">import</span> crypto <span class="keyword">from</span> <span class="string">'crypto'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> number = <span class="string">'258EAFA5-E914-47DA-95CA-C5ABODC85B11const'</span>; <span class="keyword">const</span> websocketKey =<span class="string">'GBIN9IA5TYXPYgQehlxEUw=='</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 采用hah算法生成更新生成摘要输出base64格式 响应给客户端</span></span><br><span class="line"><span class="keyword">const</span> websocketAccept = crypto.<span class="title function_">createHash</span>( <span class="string">'sha1'</span> ).<span class="title function_">update</span>(websocketKey + number).<span class="title function_">digest</span>( <span class="string">'base64'</span> )</span><br></pre></td></tr></tbody></table></figure>
-<p>完整的握手过程</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 服务端代码</span></span><br><span class="line"><span class="keyword">import</span> net <span class="keyword">from</span> <span class="string">'net'</span><span class="comment">// 可以接受原始的消息</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个人连接都会产生一个socket</span></span><br><span class="line"><span class="keyword">const</span> server = net.<span class="title function_">createServer</span>(<span class="keyword">function</span>(<span class="params">socket</span>){</span><br><span class="line">    <span class="comment">// 客户端发消息 先握手</span></span><br><span class="line">    socket.<span class="title function_">once</span>(<span class="string">'data'</span>,<span class="keyword">function</span>(<span class="params">data</span>){</span><br><span class="line">        <span class="comment">// 发送的报文 data</span></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * data包含</span></span><br><span class="line"><span class="comment">            GET / HTIP/1.1 *请求行*</span></span><br><span class="line"><span class="comment">            Host: localhost:3000</span></span><br><span class="line"><span class="comment">            Connection: UpgradePragma: no-cacheCache Control: no-cacheUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac 0S X 10 15 7) AppleWebKit/537.36 (KHTMLlike Gecko) Chrome/115.0.0.0 Safari/537.36Upgrade: websocket</span></span><br><span class="line"><span class="comment">            0rigin: http://127.0.0.1:5500</span></span><br><span class="line"><span class="comment">            Sec WebSocket-Version: 13</span></span><br><span class="line"><span class="comment">            Accept-Encoding: gzip,deflate,brAccept-Language: zh-CN, zh;g=0.9Sec-WebSocket-Key: LFD4X3DrVLhObMnKL0b5K0</span></span><br><span class="line"><span class="comment">            Sec-WebSocket-Extensions: permessage-deflate; client max window bits</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        data = data.<span class="title function_">toString</span>()</span><br><span class="line">        <span class="comment">//  说明要升级成websocket协议 再报文中读取是否已经是websocket协议</span></span><br><span class="line">        <span class="keyword">if</span>(data.<span class="title function_">match</span>(<span class="regexp">/Upgrade:websocket/</span>)){</span><br><span class="line">            <span class="comment">/**</span></span><br><span class="line"><span class="comment">             * 在抓包工具中读取到 key用来解析 ***在报文中都是字符串存在的***</span></span><br><span class="line"><span class="comment">                    Host; localhost:3000\r\n</span></span><br><span class="line"><span class="comment">                    Connection: Upgrade rn</span></span><br><span class="line"><span class="comment">                    Pragma: no-cache rin</span></span><br><span class="line"><span class="comment">                    Cache Control: nocache\rin</span></span><br><span class="line"><span class="comment">                    User-Agent; Mozilla/5.0 (Macintosh; Intel Mac 05 X 10 15 7) AppleWebkit/537,36 (KHTML, like Gecko</span></span><br><span class="line"><span class="comment">                    Upgrade: websocket r\n</span></span><br><span class="line"><span class="comment">                    0rigin: http://127.0.0.1:5500\r\n</span></span><br><span class="line"><span class="comment">                    Sec-WebSocket-Version: 13r'nAccept-Encoding: gzip, deflate, bririnAccept-Language: zh-CN zh;a=0.9\r\n</span></span><br><span class="line"><span class="comment">                    Sec-WebSocket-Key:P2P2F9kEf/wg18RkzXM8eA==\rin</span></span><br><span class="line"><span class="comment">                    Sec-WebSocket-Extensions: permessage-deflate; client max window bits'rinrin</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">             */</span></span><br><span class="line">           <span class="keyword">let</span> rows =  data.<span class="title function_">split</span>(<span class="string">'\r\n'</span>)</span><br><span class="line">           <span class="variable language_">console</span>.<span class="title function_">log</span>(rows)</span><br><span class="line">           <span class="comment">/**</span></span><br><span class="line"><span class="comment">            * rows 打印得出</span></span><br><span class="line"><span class="comment">                    GETHTTP/1.1Host: localhost:3000'Connection: Uggrade'Pragma; no-cache'Cache-Control; no-cache'"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac 0S X 10 15 7) AppleWebKit/537.36 (KHTML，like Gecko) Chrome/115.0.0.0 Safari/537.36''Uparade: websocket'</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="number">3000</span>,<span class="keyword">function</span>(<span class="params"></span>){</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'server start port 3000'</span>)</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure></li>
-</ul>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>webpack、vite的自动导包的&quot;爱恨情仇&quot;</title>
-    <url>/2022/10/19/%20webpack%E3%80%81vite%E7%9A%84%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%8C%85%E7%9A%84-%E7%88%B1%E6%81%A8%E6%83%85%E4%BB%87/</url>
-    <content><![CDATA[<h1 id="webpack、vite的自动导包的”爱恨情仇”"><a href="#webpack、vite的自动导包的”爱恨情仇”" class="headerlink" title="webpack、vite的自动导包的”爱恨情仇”"></a>webpack、vite的自动导包的”爱恨情仇”</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在开发Vue3+Vite的统一基座工程，遇到了模块自动导入的不同构建工具的引入方式，特此记录。</p>
-<span id="more"></span>
-
-
-<p>在项目中，为了避免频繁导入。大家都会在对应，例如项目使用Webpack 打包工具的。在其项目<em><strong>store</strong></em>文件下其中的index.js 文件中使用webpack提供的api<code>require.context</code>的方法实现自动导入。</p>
-<h2 id="ES-模块规范"><a href="#ES-模块规范" class="headerlink" title="ES 模块规范"></a>ES 模块规范</h2><p>在实现自动导入模块前，我们先了解下<code>ES 模块规范</code>。</p>
-<p>所谓的<code>ES模块规范</code>,即 JavaScript 的标准模块系统，它允许您使用 <code>import</code> 和 <code>export</code> 关键字来导入和导出模块。这是现代 JavaScript 中推荐使用的模块化方式。</p>
-<p>在<code>ES模块规范</code>中，提供了<code>import.meta.glob</code>功能。它允许在项目运行中动态匹配特定模式的模块。例如以下代码就可以动态匹配到<code>module</code>模块下的所有<code>js</code>文件。</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="title function_">glob</span>(<span class="string">'./module/*.js'</span>)</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="话不多说，上干货"><a href="#话不多说，上干货" class="headerlink" title="话不多说，上干货"></a>话不多说，上干货</h2><p>例如，你的项目<em><strong>sotre</strong></em>文件目录为</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">- store</span><br><span class="line">  - module</span><br><span class="line">    - module1.js</span><br><span class="line">    - module2.js</span><br><span class="line">    - ...</span><br><span class="line">    - moduleN.js</span><br><span class="line">  - main.js</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>其中<code>module</code>下的<code>moduleX</code>文件你的<code>main.js</code>为你的<em><strong>sotre</strong></em>入口文件，</p>
-<h3 id="webpack中的自动导入的实现方式"><a href="#webpack中的自动导入的实现方式" class="headerlink" title="webpack中的自动导入的实现方式"></a>webpack中的自动导入的实现方式</h3><p>在<code>main.js</code>入口文件中你可以使用webpack提供<code>require.context</code>的方法实现<code>module</code>文件目录下的模块自动导入。</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> files = <span class="built_in">require</span>.<span class="title function_">context</span>(<span class="string">'./model'</span>, <span class="literal">false</span>, <span class="regexp">/\.js$/</span>)</span><br><span class="line"><span class="keyword">const</span> modules = {}</span><br><span class="line">files.<span class="title function_">keys</span>().<span class="title function_">forEach</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> {</span><br><span class="line">	modules[key.<span class="title function_">replace</span>(<span class="regexp">/(\.\/|\.js)/g</span>, <span class="string">''</span>)] = <span class="title function_">files</span>(key).<span class="property">default</span></span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> modules</span><br></pre></td></tr></tbody></table></figure>
-
-<p>其中<code>files.keys()</code>是<code>require.context</code>方法返回的一个函数，它会返回一个包含所有匹配模块路径的数组。</p>
-<p><code>require.context</code>是Webpack提供的一个方法，它允许你在构建时动态地导入模块。该方法接收三个参数：</p>
-<ol>
-<li><code>directory</code>: 表示要搜索的目录路径。</li>
-<li><code>useSubdirectories</code>: 表示是否搜索子目录。</li>
-<li><code>regExp</code>: 表示匹配文件的正则表达式。</li>
-</ol>
-<p>在上面代码中，<code>files</code>就是通过<code>require.context</code>动态导入了<code>./model</code>目录下所有的<code>.js</code>文件，并使用正则表达式<code>/\.js$/</code>来匹配文件。这样，<code>files.keys()</code>返回一个包含所有匹配模块路径的数组。例如控制台打印<code>files.keys()</code>可获得以下数组</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">"./module1.js"</span>,</span><br><span class="line">    <span class="string">"./module2.js"</span>,</span><br><span class="line">    <span class="string">"./。。。.js"</span>,</span><br><span class="line">    <span class="string">"./moduleN.js"</span></span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure>
-
-<p>接着，我们可以使用<code>.forEach()</code>遍历这个数组，对每个匹配的模块进行处理，提取模块名，并将模块添加到<code>modules</code>对象中。这样，你就得到了一个以模块名为键、模块对象为值的<code>modules</code>对象，它包含了所有从<code>./model</code>目录中动态导入的模块。</p>
-<h3 id="vite自动导入的实现方式"><a href="#vite自动导入的实现方式" class="headerlink" title="vite自动导入的实现方式"></a>vite自动导入的实现方式</h3><p>在<code>main.js</code>入口文件中你可以使用<code>ES模块规范</code>提供的<code>import.meta.glob</code>方法来获取特定模块的匹配模式，来实现自动导入。</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="keyword">const</span> modules = {};</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">importAllModules</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="keyword">const</span> files = <span class="keyword">import</span>.<span class="property">meta</span>.<span class="title function_">glob</span>(<span class="string">'./module/*.js'</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> path <span class="keyword">in</span> files) {</span><br><span class="line">    <span class="keyword">const</span> key = path.<span class="title function_">replace</span>(<span class="regexp">/\.\/module\/|\.js/g</span>, <span class="string">''</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="variable language_">module</span> = <span class="keyword">await</span> files[path]();</span><br><span class="line">    modules[key] = <span class="variable language_">module</span>.<span class="property">default</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">importAllModules().<span class="title function_">then</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(modules); <span class="comment">// 所有模块已导入并组合成对象</span></span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="comment">// 现在可以导出组合后的 modules 对象供其他地方使用</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> modules;</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>在这种情况下，使用异步操作是因为模块导入是一个异步操作。<code>import.meta.glob()</code>方法会返回一个对象，该对象的键是匹配到的文件路径，值是一个函数，调用该函数将异步导入对应的模块。因此，我们需要使用异步操作来等待模块导入完成，然后再将其添加到<code>modules</code>对象中。</p>
-<p>如果我们不使用异步操作，而是直接将模块导入的结果添加到<code>module</code>对象中，那么由于模块导入是异步的，<code>modules</code>对象可能在模块导入完成之前被导出，导致<code>modules</code>对象不完整或为空。使用异步操作可以确保在所有模块导入完成后再导出<code>modules</code>对象，保证其包含所有模块导出的内容。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="为什么都是打包工具，会有不同的自动导入方式呢？"><a href="#为什么都是打包工具，会有不同的自动导入方式呢？" class="headerlink" title="为什么都是打包工具，会有不同的自动导入方式呢？"></a>为什么都是打包工具，会有不同的自动导入方式呢？</h3><p>在使用 Webpack 的情况下，与使用 Vite 或其他原生支持 ES 模块的项目相比，自动导入模块的实现会有一些区别。主要区别在于 Webpack 不支持 <code>import.meta.glob</code>，因为它是 ES 模块的一个特殊功能，而 Webpack 是一个打包工具，不完全符合 ES 模块的规范。</p>
-<h3 id="那这里就浅浅对比下俩种打包工具的差异吧"><a href="#那这里就浅浅对比下俩种打包工具的差异吧" class="headerlink" title="那这里就浅浅对比下俩种打包工具的差异吧"></a>那这里就浅浅对比下俩种打包工具的差异吧</h3><h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><ul>
-<li>成熟度高。Webpack是一个成熟且应用相当广泛的打包构建工具，具有强大的生态系统和社区支持。</li>
-<li>打包速度较慢。Webpack打包速度在大型项目打包速度比较慢，从入口文件开始，基于代码中的import、export、require构建依赖树，将所有的模块打包到一个或者几个少数文件中。因此，项目规模庞大的话，启动和热更新更慢。每次代码变更构建都需要生成新的Bundle文件。</li>
-<li>配置复杂。官网配置很多，需要处理不同的Loader和Plugin来管理不同的资源文件。</li>
-<li>插件系统丰富。Webpack具有强大的插件系统，允许开发者根据需求扩展定义。</li>
-<li>Tree Shaking。Webpack通过使用UglifyJS等工具进行Tree Shaking，消除未使用的代码</li>
-<li>热模块替换（HMR）。Webpack支持热模块替换，但在某些情况下需要手动配置。</li>
-</ul>
-<h4 id="Vite"><a href="#Vite" class="headerlink" title="Vite"></a>Vite</h4><ul>
-<li>新兴技术。Vite是一个相较新的构建工具，旨在提供更快的开发体验和构建速度。</li>
-<li>打包速度极快。Vite在开发环境下具有极快的启动和热更新速度，因为它采用了原生ES模块的方式，并且将依赖项保持为独立的文件，而不是打包到一个大文件中。</li>
-<li>配置简单。Vite的配置比Webpack简单，尤其是对于常见的项目结构，大部分任务都无需额外配置。</li>
-<li>热模块替换（HMR）。Vite对热模块替换的支持非常好，在开发过程中几乎不需要手动配置即可实现HMR。</li>
-<li>Tree Shaking。Vite使用Rollup进行Tree Shaking，这使得未使用的代码更容易被消除。</li>
-<li>插件系统还不够完善。Vite的插件系统仍在发展中，目前没有Webpack那么丰富的插件支持。</li>
-</ul>
-<p>总之，Webpack更加适合与大型、复杂项目的构建工作，拥有成熟和完善的生态系统和社区。Vite更适合用于一些热更新快速的程序。</p>
-]]></content>
-      <tags>
-        <tag>前端构建工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue3+vite环境变量踩雷</title>
-    <url>/2022/07/18/%20vue3-vite%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%B8%A9%E9%9B%B7/</url>
-    <content><![CDATA[<h1 id="vue3-vite-环境变量踩坑"><a href="#vue3-vite-环境变量踩坑" class="headerlink" title="vue3 + vite 环境变量踩坑"></a>vue3 + vite 环境变量踩坑</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>众所周知，项目搭建过程中，存在环境的区分。一般项目中都会存在<em><strong>env</strong></em>的俩个配置环境变量的配置文件。…</p>
-<span id="more"></span>
-
-<p>例如以下生产环境、开发环境的环境变量文件：</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//.env.development 生产环境变量文件</span></span><br><span class="line"># 开发环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/dev-api'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// .env.production</span></span><br><span class="line"># 生产环境配置</span><br><span class="line"><span class="variable constant_">ENV</span> = <span class="string">'production'</span></span><br><span class="line"></span><br><span class="line"># 生产环境</span><br><span class="line"><span class="variable constant_">VUE_APP_BASE_API</span> = <span class="string">'/web-api'</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>然后在package.json中配置对应环境启动命令用以启动不同环境</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: {</span><br><span class="line">   <span class="string">"dev"</span>: <span class="string">"vue-cli-service --mode development"</span>,</span><br><span class="line">   <span class="string">"build"</span>: <span class="string">"vue-cli-service build --mode production"</span>,</span><br><span class="line"> },</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<h2 id="什么是环境变量？"><a href="#什么是环境变量？" class="headerlink" title="什么是环境变量？"></a>什么是环境变量？</h2><p>根据代码运行环境变化而变化的变量就是所谓的环境变量。</p>
-<p>在生产环境和开发环境中最多用以区分接口公共<em><strong>BASE_URL_API</strong></em>路径来请求不同接口。</p>
-<p>环境变量一般在全局可以访问得到。在vue项目中，常见的环境变量访问方式是以下方式进行获取的：</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = {</span><br><span class="line">  <span class="attr">mode</span>: process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">'production'</span> ? <span class="string">'production'</span> : <span class="string">'development'</span></span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>其中的<u><em><strong>process.env.NODE_ENV</strong></em></u>就是环境变量，他是Node.js提供的API，用以返回获取当前<u><strong>Shall</strong></u>(操作系统和运行环境)所有的环境变量。</p>
-<h2 id="vue2-webPack-与-vue3-vite项目搭建获取环境变量的区别："><a href="#vue2-webPack-与-vue3-vite项目搭建获取环境变量的区别：" class="headerlink" title="vue2+webPack 与 vue3+vite项目搭建获取环境变量的区别："></a>vue2+webPack 与 vue3+vite项目搭建获取环境变量的区别：</h2><h3 id="webpack、vite相似之处"><a href="#webpack、vite相似之处" class="headerlink" title="webpack、vite相似之处"></a>webpack、vite相似之处</h3><p>配置都是按照前言所述，创建对应的环境变量的<u><em><strong>env</strong></em></u>文件，配置<u><em><strong>package.json</strong></em></u>文件中对应环境的启动命令。</p>
-<h3 id="webpack中的环境变量"><a href="#webpack中的环境变量" class="headerlink" title="webpack中的环境变量"></a>webpack中的环境变量</h3><p>在vue2项目中，webpack做了处理，使得浏览器可以直接识别获取到node环境的process.env变量。</p>
-<ul>
-<li><p>创建方式：配置在项目中env环境变量配置文件中，webpack环境变量可随意命名</p>
-</li>
-<li><p>获取方式：可以通过***<u>process.env*</u>**获取</p>
-</li>
-</ul>
-<p>所以在页面中可以获取相应的环境变量：</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">//这里就是获取启动或者打包的命令获取对应的配置文件中的变量 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'当前环境是:'</span>,process.<span class="property">env</span>.<span class="property">NODE_ENV</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<h3 id="vite中的环境变量"><a href="#vite中的环境变量" class="headerlink" title="vite中的环境变量"></a>vite中的环境变量</h3><ul>
-<li><p>创建方式：vite中环境创建存在俩种，都是在项目中env环境变量配置文件中配置：</p>
-<ol>
-<li><p>创建以<u><strong>VITE_</strong></u>开头的环境变量</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"># 开发环境配置</span><br><span class="line"><span class="variable constant_">NODE_ENV</span> =<span class="string">'development'</span></span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line"><span class="variable constant_">VITE_APP_BASE_API</span> = <span class="string">'/dev-api'</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VITE_APP_URL</span> = <span class="string">"http://193.1.1.107:8042"</span></span><br><span class="line"></span><br><span class="line"><span class="variable constant_">VITE_APP_BASE_PORT</span> = <span class="string">"80"</span></span><br></pre></td></tr></tbody></table></figure>
-</li>
-<li><p>更换<u><strong>VITE_</strong></u>前缀</p>
-<p>以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中。参考官网：</p>
-<p>[共享配置]: <a href="https://vitejs.cn/vite3-cn/config/shared-options.html#envdir">https://vitejs.cn/vite3-cn/config/shared-options.html#envdir</a>	“VIte官方文档”</p>
-<p>以 envPrefix 开头的环境变量会通过 import.meta.env 暴露在你的客户端源码中。</p>
-<ul>
-<li><p><strong>类型：</strong> string | string[]</p>
-</li>
-<li><p><strong>默认：</strong> VITE_</p>
-</li>
-<li><p><strong>安全注意事项</strong></p>
-<p><strong>envPrefix</strong> 不应被设置为空字符串 <strong>‘ ‘</strong> ，这将暴露你所有的环境变量，导致敏感信息的意外泄漏。 检测到配置为 <strong>‘ ‘</strong> 时 Vite 将会抛出错误.</p>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>获取方式：</p>
-<p>Vite是在 <strong>import.meta.env</strong>对象上暴露当前Shall的环境变量。</p>
-<p>以下是获取对象中常用的内在变量：</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 应用运行的模式。</span></span><br><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">MODE</span>: {string} </span><br><span class="line"><span class="comment">// 部署应用时的基本 URL。他由base配置项决定。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">BASE_URL</span>: {string} </span><br><span class="line"><span class="comment">//  应用是否运行在生产环境。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">PROD</span>: {boolean}</span><br><span class="line"><span class="comment">// 应用是否运行在开发环境 (永远与 import.meta.env.PROD相反)。</span></span><br><span class="line"><span class="keyword">import</span>. meta.<span class="property">env</span>.<span class="property">DEV</span>: {boolean} </span><br><span class="line"><span class="comment">// 应用是否运行在 </span></span><br><span class="line"><span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">env</span>.<span class="property">SSR</span>: {boolean} server 上。</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>注意：以上的变量存在于运行环境中，对应的vite.config中获取不到。</p>
-<p>在 Vite 的配置文件 vite.config.js 中，默认是不加载 .env 文件中的环境变量的。因为正常情况下，只有在评估完 Vite 配置之后，才知道哪些文件需要被加载，比如之前我们提到的<code>root</code>和<code>envDir</code>都会影响到加载的行为。不管如何，如果想要在配置中加载环境变量，可以使用 <code>loadEnv</code> 去加载环境变量。</p>
-<figure class="highlight js"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> { defineConfig, loadEnv } <span class="keyword">from</span> <span class="string">"vite"</span>;</span><br><span class="line"><span class="keyword">import</span> vue <span class="keyword">from</span> <span class="string">"@vitejs/plugin-vue"</span>;</span><br><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">"path"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(<span class="function">(<span class="params">{ mode }</span>) =&gt;</span> {</span><br><span class="line">  <span class="keyword">const</span> env = <span class="title function_">loadEnv</span>(mode, process.<span class="title function_">cwd</span>(), <span class="string">""</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(env.<span class="property">VITE_APP_BASE_API</span>);</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">resolve</span> = (<span class="params">dir</span>) =&gt; path.<span class="title function_">resolve</span>(__dirname, dir);</span><br><span class="line">  <span class="keyword">return</span> {</span><br><span class="line">    <span class="attr">base</span>: <span class="string">"./"</span>,</span><br><span class="line">    <span class="attr">publicPath</span>: <span class="title function_">resolve</span>(<span class="string">"./static"</span>),</span><br><span class="line">    <span class="attr">assetsPublicPath</span>: <span class="string">"./"</span>,</span><br><span class="line">    <span class="attr">plugins</span>: [<span class="title function_">vue</span>()],</span><br><span class="line">    <span class="attr">extensions</span>: [<span class="string">".js"</span>, <span class="string">".ts"</span>, <span class="string">".jsx"</span>, <span class="string">".tsx"</span>, <span class="string">".json"</span>, <span class="string">".vue"</span>],</span><br><span class="line">    <span class="attr">resolve</span>: {</span><br><span class="line">      <span class="attr">alias</span>: {</span><br><span class="line">        <span class="string">"@"</span>: <span class="title function_">resolve</span>(<span class="string">"src"</span>),</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">    <span class="comment">// 本地运行配置，及反向代理配置</span></span><br><span class="line">    <span class="attr">server</span>: {</span><br><span class="line">      <span class="attr">host</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="attr">port</span>: <span class="number">80</span>,</span><br><span class="line">      <span class="attr">open</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">strictPort</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">https</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">cors</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">proxy</span>: {</span><br><span class="line">        <span class="comment">// 代理规则直接放在 server 对象下，而非嵌套的 server 对象中</span></span><br><span class="line">        [env.<span class="property">VITE_APP_BASE_API</span>]: {</span><br><span class="line">          <span class="attr">target</span>: <span class="string">"http://172.1.1.210:8080"</span>,</span><br><span class="line">          <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">rewrite</span>: <span class="function">(<span class="params">path</span>) =&gt;</span> path.<span class="title function_">replace</span>(<span class="keyword">new</span> <span class="title class_">RegExp</span>(<span class="string">"^"</span> + env.<span class="property">VITE_APP_BASE_API</span>), <span class="string">"/web-api"</span>), <span class="comment">// 替换 /dev-api 为 target 接口地址</span></span><br><span class="line">        },</span><br><span class="line">      },</span><br><span class="line">    },</span><br><span class="line">  </span><br><span class="line">  };</span><br><span class="line">});</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-
-<p>注意，mode必须解构后传入loadEnv mode变量中</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>前端构建工具</tag>
       </tags>
   </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="https://ayozoo.github.io/atom.xml" rel="self"/>
   
   <link href="https://ayozoo.github.io/"/>
-  <updated>2023-11-13T14:52:38.345Z</updated>
+  <updated>2023-11-20T15:04:09.910Z</updated>
   <id>https://ayozoo.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React-状态管理</title>
+    <link href="https://ayozoo.github.io/2023/11/20/%20React-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/"/>
+    <id>https://ayozoo.github.io/2023/11/20/%20React-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</id>
+    <published>2023-11-20T15:03:43.000Z</published>
+    <updated>2023-11-20T15:04:09.910Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="react之状态管理"><a href="#react之状态管理" class="headerlink" title="react之状态管理"></a>react之状态管理</h1><p>随着应用的不断加大，我们应该更有意识的的去关注我们的应用状态如何去组织，以及数据如何在组件中流动。我们应该去避免冗余或重复的状态，这样可以避免一些缺陷的产生。这时候，如何组织好状态，如何保持状态更新逻辑的可维护性，以及如何跨组件共享状态就变得尤为重要。</p><h2 id="使用状态响应输入"><a href="#使用状态响应输入" class="headerlink" title="使用状态响应输入"></a>使用状态响应输入</h2><p>在使用React时，我们不需要直接代码层面去修改UI。我们可以直接通过组件的不同状态去展现的UI，然后根据用户输入触发状态修改。</p><h3 id="声明式UI与命令式UI的比较"><a href="#声明式UI与命令式UI的比较" class="headerlink" title="声明式UI与命令式UI的比较"></a>声明式UI与命令式UI的比较</h3><p>当设计UI交互时，会思考UI如何根据用户的操作而<strong>响应变化</strong>。想象一个允许用户提交一个答案的表单：</p><ul><li>当表单输入的时候，“提交”按钮会变成<strong>可用状态</strong></li><li>点击“提交”后，表单和提交按钮都会随之变成<strong>不可用状态</strong></li><li>如果网络请求成功，表单会随之<strong>隐藏</strong>，同时会出现“提交成功”提示</li><li>如果网络请求失败，会出现错误提示信息，表单又变为可用状态</li></ul><p><strong>命令式编程</strong>中，我们需要根据具体的场景去设计如何实现交互。我们必须根据可能会发生的事情去写一些明确的命令去操作UI。也就是我们需要“命令”每个元素（操作dom），告诉计算机应该<strong>如何</strong>去更新UI的编程方式被称为<strong>命令式编程</strong>。</p><p>对于独立系统来说，命令式控制用户界面的效果也不错，但是如果要实现更为复杂的系统时，代码的组织就会指数级难度增长。</p><p>而React就是为了解决这样的问题而诞生。</p><p>在React中，不比直接去操作UI（不需要去直接操作dom）。相反，我们<strong>只需要声明我们想要显示的内容。</strong>React就会通过计算如何去更新UI。</p><h3 id="声明式考虑UI"><a href="#声明式考虑UI" class="headerlink" title="声明式考虑UI"></a>声明式考虑UI</h3><p>通过上面的思考方式，我们来看看React时如何去实现这个UI。</p><ol><li><strong>定位</strong>组件中不同的视图状态</li><li><strong>确定</strong>是什么触发这些<code>state</code>的改变</li><li><strong>表示</strong>内存中的<code>state</code>(需要使用<code>useState</code>)</li><li><strong>删除</strong>任何不必要的<code>state</code>变量</li><li><strong>连接</strong>事件处理函数去设置<code>state</code></li></ol><h4 id="步骤1-定位组件中不同的视图状态"><a href="#步骤1-定位组件中不同的视图状态" class="headerlink" title="步骤1:定位组件中不同的视图状态"></a>步骤1:定位组件中不同的视图状态</h4><p>在React中，不同的可视化UI界面中用户所有看到的都是不同的“状态”。</p><ul><li><strong>无数据</strong>：表单有一个不可用状态的“提交”按钮。</li><li><strong>输入中</strong>：表单有一个可用状态的“提交”按钮。</li><li><strong>提交中</strong>：表单完全处于不可用状态，加载动画出现。</li><li><strong>成功时</strong>：显示“成功”的消息而非表单。</li><li><strong>错误时</strong>：与输入状态类似，但会多错误的消息。</li></ul><h4 id="步骤2-确定是什么触发了这些状态的改变"><a href="#步骤2-确定是什么触发了这些状态的改变" class="headerlink" title="步骤2:确定是什么触发了这些状态的改变"></a>步骤2:确定是什么触发了这些状态的改变</h4><p>触发<code>state</code>的更新来响应俩种输入：</p><ul><li><strong>人为</strong>输入。比如点击按钮、在表单中输入内容，或导航到链接。</li><li><strong>计算机</strong>输入。比如网络请求得到反馈、定时器被触发，或加载一张图片。</li></ul><p>以上两种情况中，<strong>你必须设置 <a href="https://react.docschina.org/learn/state-a-components-memory#anatomy-of-usestate">state 变量</a> 去更新 UI</strong>。对于正在开发中的表单来说，你需要改变 state 以响应几个不同的输入：</p><ul><li><strong>改变输入框中的文本时</strong>（人为）应该根据输入框的内容是否是<strong>空值</strong>，从而决定将表单的状态从空值状态切换到<strong>输入中</strong>或切换回原状态。</li><li><strong>点击提交按钮时</strong>（人为）应该将表单的状态切换到<strong>提交中</strong>的状态。</li><li><strong>网络请求成功后</strong>（计算机）应该将表单的状态切换到<strong>成功</strong>的状态。</li><li><strong>网络请求失败后</strong>（计算机）应该将表单的状态切换到<strong>失败</strong>的状态，与此同时，显示错误信息。</li></ul><h4 id="步骤3：通过useState表示内存中的state"><a href="#步骤3：通过useState表示内存中的state" class="headerlink" title="步骤3：通过useState表示内存中的state"></a>步骤3：通过<code>useState</code>表示内存中的<code>state</code></h4><p>接下来，我们会需要在内存中通过 <a href="https://react.docschina.org/reference/react/useState"><code>useState</code></a> 表示组件中的视图状态。<code>state</code>的每个部分都是“处在变化中的”，并且需要<strong>让“变化大的部分”尽可能的少</strong>。</p><ol><li>先从<strong>绝对必须存在</strong>的状态开始。</li><li>接下来，创建一个状态变量去代表想要显示的可时状态</li><li>在很难想出最好的办法时，就从添加足够多的<code>state</code>开始，<strong>确保</strong>所有可能的视图状态都包含。</li></ol><p>最初的想法或许不是最好的，必要时，**重构<code>state</code>**也是步骤中的一部分。</p><h4 id="步骤4-删除任何不必要的state变量"><a href="#步骤4-删除任何不必要的state变量" class="headerlink" title="步骤4:删除任何不必要的state变量"></a>步骤4:删除任何不必要的state变量</h4><p>我们想要避免<code>state</code>内容中的重复，从而只需要关注必要的部分。这就需要我们花费时间去重构我们的<code>state</code>结构，这样会让我们的组件更容易被理解，从而减少重复避免歧义。<strong>主要的目的是防止出现在内存中的state不代表任何我们让用户看到的有效UI的情况。</strong></p><p>在创建<code>state</code>变量的时候，我们应该反问自己以下这些问题：</p><ul><li><strong>这个<code>state</code>是否会导致矛盾？</strong>例如，<code>isTyping</code> 与 <code>isSubmitting</code> 的状态不能同时为 <code>true</code>。矛盾的产生通常说明了这个 state 没有足够的约束条件。两个布尔值有四种可能的组合，但是只有三种对应有效的状态。为了将“不可能”的状态移除，可以将 <code>'typing'</code>、<code>'submitting'</code> 以及 <code>'success'</code> 这三个中的其中一个与 <code>status</code> 结合。</li><li><strong>相同的信息是否已经在另一个 state 变量中存在</strong>？另一个矛盾：<code>isEmpty</code> 和 <code>isTyping</code> 不能同时为 <code>true</code>。通过使它们成为独立的 state 变量，可能会导致它们不同步并导致 bug。幸运的是，可以移除 <code>isEmpty</code> 转而用 <code>message.length === 0</code>。</li><li><strong>是否可以通过另一个 state 变量的相反值得到相同的信息</strong>？<code>isError</code> 是多余的，因为你可以检查 <code>error !== null</code>。</li></ul><p>正是因为在不破坏功能的情况下删除其中任何一个状态变量，才可以确定这些都是必要的。</p><h4 id="步骤5-连接事件处理函数以设置state"><a href="#步骤5-连接事件处理函数以设置state" class="headerlink" title="步骤5:连接事件处理函数以设置state"></a>步骤5:连接事件处理函数以设置state</h4><p>最后，创建事件处理函数去设置<code>state</code>变量。</p><h2 id="选择状态结构"><a href="#选择状态结构" class="headerlink" title="选择状态结构"></a>选择状态结构</h2><p>良好的状态组织，可以区分易于修改和调试的组件和频繁出问题的组件。<strong>最重要的原则是，状态不应该包含冗余或重复的信息。</strong></p><h2 id="在组件间共享状态"><a href="#在组件间共享状态" class="headerlink" title="在组件间共享状态"></a>在组件间共享状态</h2><p>如果我们需要俩个组件的状态始终同步修改。我们可以将相关状态从这俩个组件上移除，将这些状态移到最近的父级组件，然后通过<code>props</code>将这些状态传递给这俩个组件。<strong>这被称为“状态提升”。</strong></p><h2 id="对state进行保留和重置状态"><a href="#对state进行保留和重置状态" class="headerlink" title="对state进行保留和重置状态"></a>对state进行保留和重置状态</h2><p>当我们重新渲染一个组件时，React需要决定组件树哪些部分要保留和更新，以及丢弃或重新创建。在大多数情况下，React的自动处理机制已经做了大部分工作。默认情况下，React会保留树中与先前渲染组件树“匹配”的部分。</p><p>React允许覆盖默认行为，这时候可以通过向组件传递一个唯一<code>key</code>来<em>强制</em>重置其状态。这将告诉React，<strong>组件需要重新渲染。</strong></p><h2 id="提取状态到reducer中"><a href="#提取状态到reducer中" class="headerlink" title="提取状态到reducer中"></a>提取状态到reducer中</h2><p>对于需要更新多个状态的组件来说，会存在过于分散的事件处理程序。对于这种情况，我们可以在组件外部将所有的状态更新逻辑合并到一个称为“reducer”的函数中。这样，事件处理程序就会变的简洁，只需要我们指定对应的“action”。同时定义，<code>reducer</code>函数指定状态因该如何更新去响应每个<code>action</code>!</p><h2 id="使用Context进行深层数据传递"><a href="#使用Context进行深层数据传递" class="headerlink" title="使用Context进行深层数据传递"></a>使用Context进行深层数据传递</h2><p>通常，我们会存在需要通过<code>props</code>将信息从父组件传递给子组件。如果需要在组件树中深入传递<code>prop</code>，或者树中许多组件都需要使用相同的<code>prop</code>，那么传递<code>prop</code>可能会变得麻烦。<code>Context</code>允许父组件将一些信息提供给它下层的任何组件，不管组件多深层也无需通过<code>props</code>逐层透传。</p><h2 id="使用Reducer和Context进行状态扩展"><a href="#使用Reducer和Context进行状态扩展" class="headerlink" title="使用Reducer和Context进行状态扩展"></a>使用Reducer和Context进行状态扩展</h2><p>Reducer可以帮助我们合并组件的状态更新逻辑。Context可以帮助我们将信息深处传递给其他组件。可以将二者结合使用，以管理复杂应用的状态。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;react之状态管理&quot;&gt;&lt;a href=&quot;#react之状态管理&quot; class=&quot;headerlink&quot; title=&quot;react之状态管理&quot;&gt;&lt;/a&gt;react之状态管理&lt;/h1&gt;&lt;p&gt;随着应用的不断加大，我们应该更有意识的的去关注我们的应用状态如何去组织，以及</summary>
+      
+    
+    
+    
+    <category term="前端框架" scheme="https://ayozoo.github.io/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="react" scheme="https://ayozoo.github.io/tags/react/"/>
+    
+  </entry>
   
   <entry>
     <title>React之Hook篇</title>
